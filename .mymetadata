@@ -2,8 +2,8 @@
 <project-module
   type="WEB"
   name="simple_ssh"
-  id="myeclipse.1394328632961"
-  context-root="/simple_ssh"
+  id="myeclipse.1299423415671"
+  context-root="/easyWebSqlBean"
   j2ee-spec="5.0"
   archive="simple_ssh.war">
   <attributes>
