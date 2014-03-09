@@ -9,10 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-/**×ªÂëFilter*/
+/**è½¬ç Filter*/
 public class EncodingFilter implements Filter {
 	
-	/**ÇëÇó±àÂë*/
+	/**è¯·æ±‚ç¼–ç */
 	private String reqEnc = "utf-8";
 	private String reqType= "text/html;charset=utf-8";
 
@@ -27,7 +27,7 @@ public class EncodingFilter implements Filter {
 	}//
 
 	public void init(FilterConfig config) throws ServletException {
-		System.out.println("=========³õÊ¼»¯ EncodingFilter========");
+		System.out.println("=========åˆå§‹åŒ– EncodingFilter========");
 		System.out.println("reqEnc = \"utf-8\";\nreqType= \"text/html;charset=utf-8\";");
 		if(null!=config.getInitParameter("reqEnc"))reqEnc = config.getInitParameter("reqEnc");
 		if(null!=config.getInitParameter("reqType"))reqType=config.getInitParameter("reqType");

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**存取应用程序在本地的请求request对象以及相关对象*/
+/**瀛樺彇搴旂敤绋嬪簭鍦ㄦ湰鍦扮殑璇锋眰request瀵硅薄浠ュ強鐩稿叧瀵硅薄*/
 public class WebContext {
 	
 	private static ThreadLocal<HttpServletRequest> requestHolder = new ThreadLocal<HttpServletRequest>();

@@ -1,9 +1,9 @@
 package com.createJavaFile.createModel;
 
 /**<pre>
- * ¶¨ÒåÊı¾İ¿â±íµ¥ÁĞ°ü×°Àà
- * ÓÃÓÚ²éÑ¯µÄ
- * exist±íÊ¾²éÑ¯µÄÊÇ´æÔÚÊÂ¼ş»¹ÊÇ²»´æÔÚÊÂ¼ş£¬Ä¬ÈÏÎª´æÔÚÊÂ¼ş
+ * å®šä¹‰æ•°æ®åº“è¡¨å•åˆ—åŒ…è£…ç±»
+ * ç”¨äºæŸ¥è¯¢çš„
+ * existè¡¨ç¤ºæŸ¥è¯¢çš„æ˜¯å­˜åœ¨äº‹ä»¶è¿˜æ˜¯ä¸å­˜åœ¨äº‹ä»¶ï¼Œé»˜è®¤ä¸ºå­˜åœ¨äº‹ä»¶
  * </pre>
  * */
 public class SqlColumn {
@@ -19,15 +19,15 @@ public class SqlColumn {
 		this.exist = !exist;
 	}
 	/**
-	 * @param columnName  ÁĞÃû
-	 * @param columnValue ÁĞÖµ
+	 * @param columnName  åˆ—å
+	 * @param columnValue åˆ—å€¼
 	 */
 	public SqlColumn(String columnName, Object columnValue) {
 		this.columnName = columnName;
 		this.columnValue = columnValue;
 	}
 	/**
-	 * @param columnValue ÁĞÖµ
+	 * @param columnValue åˆ—å€¼
 	 */
 	public SqlColumn(String columnValue) {
 		this.columnValue = columnValue;

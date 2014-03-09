@@ -2,7 +2,7 @@ package com.shy2850.convertor;
 
 import com.createJavaFile.Main.DBManager;
 
-/**系统转换器DoubleConvertor*/
+/**绯荤粺杞崲鍣―oubleConvertor*/
 class DoubleConvertor extends Convertor {
 
 	public DoubleConvertor() {
@@ -14,7 +14,7 @@ class DoubleConvertor extends Convertor {
 		try {
 			return Double.parseDouble(convertorString);
 		} catch (NumberFormatException e) {
-			DBManager.getOut().println("String:"+convertorString+" 无法转换到java.lang.Double");
+			DBManager.getOut().println("String:"+convertorString+" 鏃犳硶杞崲鍒癹ava.lang.Double");
 			return null;
 		}
 	}

@@ -2,7 +2,7 @@ package com.shy2850.convertor;
 
 import com.createJavaFile.Main.DBManager;
 
-/**系统转换器LongConvertor*/
+/**绯荤粺杞崲鍣↙ongConvertor*/
 class LongConvertor extends Convertor {
 	
 	public LongConvertor() {
@@ -14,7 +14,7 @@ class LongConvertor extends Convertor {
 		try {
 			return Long.parseLong(convertorString);
 		} catch (NumberFormatException e) {
-			DBManager.getOut().println("String:"+convertorString+" 无法转换到java.lang.Long");
+			DBManager.getOut().println("String:"+convertorString+" 鏃犳硶杞崲鍒癹ava.lang.Long");
 			return null;
 		}
 	}

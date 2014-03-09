@@ -34,7 +34,7 @@ public class FPreparedStatementImpl implements PreparedStatement {
 	}
 	
 	public String toString() {
-		return "�ļ�ϵͳ�� - sql:"+sql.toString();
+		return "文件系统： - sql:"+sql.toString();
 	}
 
 	public ResultSet executeQuery(String string) throws SQLException {

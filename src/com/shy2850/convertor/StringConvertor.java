@@ -1,6 +1,6 @@
 package com.shy2850.convertor;
 
-/**ϵͳת����StringConvertor*/
+/**系统转换器StringConvertor*/
 class StringConvertor extends Convertor {
 
 	public StringConvertor() {

@@ -22,12 +22,12 @@ import com.shy2850.filter.ApplicationContext;
 import com.shy2850.filter.WebContext;
 
 /**
- * MVC¿ò¼ÜµÄ×ª·¢¿ØÖÆÖĞĞÄ
+ * MVCæ¡†æ¶çš„è½¬å‘æ§åˆ¶ä¸­å¿ƒ
  * 
  * <pre>
- * 	¸ÃFilterÀàÍ¨¹ı½ØÈ¡ÇëÇó×Ö·û´®£¬
- * 	·Ö±ğ´ÓÏµÍ³ÖĞ»ñµÃ¶ÔÓ¦µÄÇëÇó¶ÔÏó»òÕßÊÇ¶ÔÏó·½·¨£»
- * 	È»ºóÍ¨¹ıÖ´ĞĞ·½·¨½á¹û(String)Í¨¹ıÅäÖÃÎÄ¼şÑ°ÕÒ¶ÔÓ¦µÄÇëÇóÂ·¾¶
+ * 	è¯¥Filterç±»é€šè¿‡æˆªå–è¯·æ±‚å­—ç¬¦ä¸²ï¼Œ
+ * 	åˆ†åˆ«ä»ç³»ç»Ÿä¸­è·å¾—å¯¹åº”çš„è¯·æ±‚å¯¹è±¡æˆ–è€…æ˜¯å¯¹è±¡æ–¹æ³•ï¼›
+ * 	ç„¶åé€šè¿‡æ‰§è¡Œæ–¹æ³•ç»“æœ(String)é€šè¿‡é…ç½®æ–‡ä»¶å¯»æ‰¾å¯¹åº”çš„è¯·æ±‚è·¯å¾„
  * </pre>
  * */
 public class ActionFilter implements Filter{
@@ -35,64 +35,64 @@ public class ActionFilter implements Filter{
 	private HttpServletResponse response;
 	private static String divid = "$";
 
-	/** Ò³ÃæÇëÇóÒÔ¼°·Ö·¢µÄÖ÷ÒªÁ÷³Ì */
+	/** é¡µé¢è¯·æ±‚ä»¥åŠåˆ†å‘çš„ä¸»è¦æµç¨‹ */
 	private void intercept(HttpServletRequest request,
 			HttpServletResponse response, String urlEndding) throws ServletException, IOException {
 		PrintStream out = DBManager.getOut();
-		/** ½«µ±Ç°ÇëÇórequest±£´æÖÁ¾²Ì¬È«¾ÖÀàWebContextÖĞ */
+		/** å°†å½“å‰è¯·æ±‚requestä¿å­˜è‡³é™æ€å…¨å±€ç±»WebContextä¸­ */
 		WebContext.setRequest(request);
 		WebContext.setResponse(response);
 		try {
 			
-			/** ½Ø»ñÇëÇóÖĞµÄ ÀàÃûactionName ºÍ ·½·¨ÃûmethodName */
+			/** æˆªè·è¯·æ±‚ä¸­çš„ ç±»åactionName å’Œ æ–¹æ³•åmethodName */
 			String actionName = urlEndding.substring(1,urlEndding.indexOf(divid));
 			String methodName = urlEndding.substring(urlEndding.indexOf(divid) + 1);
-			/** Èç¹ûÇëÇó·½·¨ÃûÎªdo£¬×Ô¶¯×ª»»Îªexecute */
+			/** å¦‚æœè¯·æ±‚æ–¹æ³•åä¸ºdoï¼Œè‡ªåŠ¨è½¬æ¢ä¸ºexecute */
 			if ("do".equals(methodName) || "".equals(methodName))
 				methodName = "execute";
 
 			String forwardUrl = null;
 			ActionForward next = null;
 
-			/** »ñµÃÇëÇóµÄactionÀàµÄÏµÍ³µ¥ÊµÀı */
-			Object action = ApplicationContext.getBean(actionName); // ·´ÉäÀà
+			/** è·å¾—è¯·æ±‚çš„actionç±»çš„ç³»ç»Ÿå•å®ä¾‹ */
+			Object action = ApplicationContext.getBean(actionName); // åå°„ç±»
 
-			/** »ñÈ¡Ê§°ÜÊ±£ºÅ×³öÌáÊ¾ */
+			/** è·å–å¤±è´¥æ—¶ï¼šæŠ›å‡ºæç¤º */
 			if (null == action)
-				out.println("ActionÀà" + actionName + "Î´ÕÒµ½£¡");
+				out.println("Actionç±»" + actionName + "æœªæ‰¾åˆ°ï¼");
 
 			try {
-				/** Ê¹ÓÃÊÊÅäÆ÷£¬Îª½øÈëÖ¸¶¨actionÀà×ö×¼±¸ */
-				ConvertorUtils.convertToAction(request, action);// ÊÊÅäÆ÷µÄÊ¹ÓÃ
+				/** ä½¿ç”¨é€‚é…å™¨ï¼Œä¸ºè¿›å…¥æŒ‡å®šactionç±»åšå‡†å¤‡ */
+				ConvertorUtils.convertToAction(request, action);// é€‚é…å™¨çš„ä½¿ç”¨
 			} catch (Exception e2) {
-				out.println("ÊÊÅäÆ÷×ª»»Òì³££¡");
+				out.println("é€‚é…å™¨è½¬æ¢å¼‚å¸¸ï¼");
 				throw new Exception(e2);
 			}
 
 			Method method = null;
 			try {
-				/** »ñÈ¡Ö¸¶¨actionÖĞµÄ·½·¨ */
+				/** è·å–æŒ‡å®šactionä¸­çš„æ–¹æ³• */
 				method = action.getClass().getMethod(methodName);
 			} catch (Exception e1) {
-				out.println(action.getClass() + "ÖĞÃ»ÓĞ·½·¨£º"
+				out.println(action.getClass() + "ä¸­æ²¡æœ‰æ–¹æ³•ï¼š"
 						+ methodName);
 			}
 
 			try {
-				/** Ö´ĞĞÖ¸¶¨actionÖĞµÄ·½·¨ */
+				/** æ‰§è¡ŒæŒ‡å®šactionä¸­çš„æ–¹æ³• */
 				forwardUrl = (String) method.invoke(action);
 			} catch (Exception e1) {
-				out.println(actionName+"."+methodName+"·½·¨Ö´ĞĞÒì³££¡");
+				out.println(actionName+"."+methodName+"æ–¹æ³•æ‰§è¡Œå¼‚å¸¸ï¼");
 				throw new RuntimeException(e1);
 			}
 
-			/** ¹¹½¨Ìø×ªÇëÇó°ü×°¶ÔÏó */
+			/** æ„å»ºè·³è½¬è¯·æ±‚åŒ…è£…å¯¹è±¡ */
 			next = ActionManager.getForward(forwardUrl);
 
 			if (null == next.getUrl()){
-				out.println("ÅäÖÃÎÄ¼şÖĞÃ»ÓĞ" + forwardUrl+ "µÄforwardÅäÖÃ£¡");
-				throw new Exception("ÅäÖÃÎÄ¼şÖĞÃ»ÓĞ" + forwardUrl
-						+ "µÄforwardÅäÖÃ£¡");
+				out.println("é…ç½®æ–‡ä»¶ä¸­æ²¡æœ‰" + forwardUrl+ "çš„forwardé…ç½®ï¼");
+				throw new Exception("é…ç½®æ–‡ä»¶ä¸­æ²¡æœ‰" + forwardUrl
+						+ "çš„forwardé…ç½®ï¼");
 			}
 						
 			try {
@@ -151,12 +151,12 @@ public class ActionFilter implements Filter{
 		String s = PropertyReader.get(Util.DIVID_CONFIG);
 		if(null != s && s.length() > 0){
 			divid = s;
-			System.out.println("·Ö¸ô·ûÅäÖÃ:"+divid);
+			System.out.println("åˆ†éš”ç¬¦é…ç½®:"+divid);
 		}
 	}
 	
 
-	/**¿ò¼Ü×÷Õß±êÊ¶¢Ú*/
+	/**æ¡†æ¶ä½œè€…æ ‡è¯†â‘¡*/
 	public static void shy2850(){
 		System.err.println("@DEVELOPED BY SHY2850@");
 	}

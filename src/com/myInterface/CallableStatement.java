@@ -1,5 +1,5 @@
 /**
- * 包装JDBC接口
+ * 鍖呰JDBC鎺ュ彛
  */
 package com.myInterface;
 

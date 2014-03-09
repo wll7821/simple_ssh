@@ -9,13 +9,13 @@ import com.createJavaFile.myutil.Util;
 import com.shy2850.filter.ApplicationContext;
 
 /**
- * º¬set·½·¨µÄfield×Ö¶Î×¢ÈëÊµÏÖÀà
+ * å«setæ–¹æ³•çš„fieldå­—æ®µæ³¨å…¥å®ç°ç±»
  * @author shy2850
  * @version 1.0
  */
 public class SetMethodInjection extends ApplicationContext{
 	
-	/**ÊµÏÖº¬set·½·¨µÄfield×¢Èë*/
+	/**å®ç°å«setæ–¹æ³•çš„fieldæ³¨å…¥*/
 	public static void inject(){
 		System.out.println("SetMethodInjection.inject()");
 			  Set<Entry<String, Object>> beans = allBeans.entrySet();

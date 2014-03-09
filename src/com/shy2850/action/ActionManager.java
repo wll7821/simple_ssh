@@ -14,9 +14,9 @@ import com.createJavaFile.myutil.Util;
 
 public class ActionManager {
 	
-	/**Ìø×ªÖÃ¶ÔÏóµÄMapping*/
+	/**è·³è½¬ç½®å¯¹è±¡çš„Mapping*/
 	static private Properties propForwards;
-	/**Ó¦ÓÃ³ÌĞò¹ÜÀíµÄËùÓĞ±»Ó³ÉäÌø×ª¶ÔÏóµÄµ¥ÊµÀıMapping*/
+	/**åº”ç”¨ç¨‹åºç®¡ç†çš„æ‰€æœ‰è¢«æ˜ å°„è·³è½¬å¯¹è±¡çš„å•å®ä¾‹Mapping*/
 	static private Map<String, ActionForward> allForwards;
 	
 	  static{
@@ -27,7 +27,7 @@ public class ActionManager {
 	    		InputStream in = new FileInputStream(Util.contextPath+forwardProp);
 	    		propForwards.load(in);
 	    		in.close();
-	    	}catch(Exception e){System.out.println("ÅäÖÃÎÄ¼ş£º"+forwardProp+"²»´æÔÚ£¡");}
+	    	}catch(Exception e){System.out.println("é…ç½®æ–‡ä»¶ï¼š"+forwardProp+"ä¸å­˜åœ¨ï¼");}
 		  }
 	  }
 	  
@@ -42,9 +42,9 @@ public class ActionManager {
 		}
 	  }
 	  
-	  /**Ó¦ÓÃ³ÌĞò¹ÜÀíµÄÌø×ª¶ÔÏóÍ¨¹ı×Ö·û´®»ñµÃ
+	  /**åº”ç”¨ç¨‹åºç®¡ç†çš„è·³è½¬å¯¹è±¡é€šè¿‡å­—ç¬¦ä¸²è·å¾—
 	   * <br>
-	   * name+".isRedirect" = true;±íÊ¾Ìø×ª·½Ê½ÎªÖØ¶¨Ïò
+	   * name+".isRedirect" = true;è¡¨ç¤ºè·³è½¬æ–¹å¼ä¸ºé‡å®šå‘
 	   * </br>
 	   * */
 	  public static ActionForward getForward(String key){

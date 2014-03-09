@@ -2,7 +2,7 @@ package com.shy2850.convertor;
 
 import com.createJavaFile.Main.DBManager;
 
-/**系统转换器IntegerConvertor*/
+/**绯荤粺杞崲鍣↖ntegerConvertor*/
 class IntegerConvertor extends Convertor {
 
 	public IntegerConvertor() {
@@ -14,7 +14,7 @@ class IntegerConvertor extends Convertor {
 		try {
 			return Integer.parseInt(convertorString);
 		} catch (NumberFormatException e) {
-			DBManager.getOut().println("String:"+convertorString+" 无法转换到java.lang.Ingeter");
+			DBManager.getOut().println("String:"+convertorString+" 鏃犳硶杞崲鍒癹ava.lang.Ingeter");
 			return null;
 		}
 	}

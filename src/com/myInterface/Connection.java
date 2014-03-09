@@ -7,29 +7,29 @@ import java.sql.NClob;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 
-/**±¾ÏµÍ³Ê¹ÓÃµÄ°ü×°ĞÍÊı¾İ¿âÁ¬½Ó*/
+/**æœ¬ç³»ç»Ÿä½¿ç”¨çš„åŒ…è£…å‹æ•°æ®åº“è¿æ¥*/
 public interface Connection extends Serializable {
-	/**µ±Ç°ConnectionÊÇ·ñÕıÔÚ±»Ê¹ÓÃ*/
+	/**å½“å‰Connectionæ˜¯å¦æ­£åœ¨è¢«ä½¿ç”¨*/
 	boolean isBeingUsed();
-	/**ÉèÖÃµ±Ç°ConnectionÎªÕıÔÚÊ¹ÓÃÖĞ*/
+	/**è®¾ç½®å½“å‰Connectionä¸ºæ­£åœ¨ä½¿ç”¨ä¸­*/
 	void setBeingUsed(boolean beingUsed);
-	/**ÉèÖÃµ±Ç°ConnectionÊÇ·ñÊÖ¶¯Ìá½»*/
+	/**è®¾ç½®å½“å‰Connectionæ˜¯å¦æ‰‹åŠ¨æäº¤*/
 	void setAutoCommit(boolean autoCommit) throws SQLException;
-	/**ÉèÖÃµ±Ç°ConnectionÊÇ·ñÖ»¶ÁµÄ*/
+	/**è®¾ç½®å½“å‰Connectionæ˜¯å¦åªè¯»çš„*/
 	void setReadOnly(boolean readOnly) throws SQLException;
-	/**ÉèÖÃµ±Ç°ConnectionµÄ»Ø¹ö±£´æµã*/
+	/**è®¾ç½®å½“å‰Connectionçš„å›æ»šä¿å­˜ç‚¹*/
 	Savepoint setSavepoint(String name) throws SQLException;
-	/**µ±Ç°Connection»Ø¹öµ½Ö¸¶¨µÄ±£´æµã*/
+	/**å½“å‰Connectionå›æ»šåˆ°æŒ‡å®šçš„ä¿å­˜ç‚¹*/
 	void rollback(Savepoint savepoint) throws SQLException;
-	/**µ±Ç°Connection»Ø¹ö*/
+	/**å½“å‰Connectionå›æ»š*/
 	void rollback() throws SQLException;
-	/**ÊÍ·Åµ±Ç°ConnectionµÄ»Ø¹ö±£´æµã*/
+	/**é‡Šæ”¾å½“å‰Connectionçš„å›æ»šä¿å­˜ç‚¹*/
 	void releaseSavepoint(Savepoint savepoint) throws SQLException;
-	/**´´½¨Ò»¸ö PreparedStatement ¶ÔÏóÀ´½«²ÎÊı»¯µÄ SQL Óï¾ä·¢ËÍµ½Êı¾İ¿â¡£*/
+	/**åˆ›å»ºä¸€ä¸ª PreparedStatement å¯¹è±¡æ¥å°†å‚æ•°åŒ–çš„ SQL è¯­å¥å‘é€åˆ°æ•°æ®åº“ã€‚*/
 	PreparedStatement prepareStatement(String sql) throws SQLException;
-	/**¼ìË÷´Ë Connection ¶ÔÏóÊÇ·ñÒÑ¾­±»¹Ø±Õ¡£*/
+	/**æ£€ç´¢æ­¤ Connection å¯¹è±¡æ˜¯å¦å·²ç»è¢«å…³é—­ã€‚*/
 	boolean isClosed() throws SQLException;
-	/**¼ìË÷´Ë Connection ¶ÔÏóµÄµ±Ç°×Ô¶¯Ìá½»Ä£Ê½¡£*/
+	/**æ£€ç´¢æ­¤ Connection å¯¹è±¡çš„å½“å‰è‡ªåŠ¨æäº¤æ¨¡å¼ã€‚*/
 	boolean getAutoCommit() throws SQLException;
 	/***/
 	NClob createNClob() throws SQLException;
@@ -39,8 +39,8 @@ public interface Connection extends Serializable {
 	Blob createBlob() throws SQLException;
 	/***/
 	void commit() throws SQLException;
-	/**´´½¨Ò»¸ö Statement ¶ÔÏóÀ´½« SQL Óï¾ä·¢ËÍµ½Êı¾İ¿â¡£*/
+	/**åˆ›å»ºä¸€ä¸ª Statement å¯¹è±¡æ¥å°† SQL è¯­å¥å‘é€åˆ°æ•°æ®åº“ã€‚*/
 	Statement createStatement() throws SQLException;
-	/**µ÷ÓÃ´æ´¢¹ı³Ì*/
+	/**è°ƒç”¨å­˜å‚¨è¿‡ç¨‹*/
 	public CallableStatement prepareCall(String sql) throws SQLException;
 }

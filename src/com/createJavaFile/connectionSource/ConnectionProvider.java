@@ -8,24 +8,24 @@ import com.createJavaFile.myutil.PropertyReader;
 import com.myInterface.Connection;
 import com.myInterface.IConnectionProvider;
 
-/** ÏµÍ³¶ÀÒ»ÎŞ¶şµÄÁ¬½Ó²úÉúÆ÷ */
+/** ç³»ç»Ÿç‹¬ä¸€æ— äºŒçš„è¿æ¥äº§ç”Ÿå™¨ */
 class ConnectionProvider implements IConnectionProvider{
 	
-	/**Êı¾İ¿âÊı¾İÔ´Ö®--JDBCÇı¶¯Â·¾¶*/
+	/**æ•°æ®åº“æ•°æ®æºä¹‹--JDBCé©±åŠ¨è·¯å¾„*/
 	private static String JDBC_DRIVER;
-	/**Êı¾İ¿âÊı¾İÔ´Ö®--Êı¾İ¿âÂ·¾¶*/
+	/**æ•°æ®åº“æ•°æ®æºä¹‹--æ•°æ®åº“è·¯å¾„*/
 	private static String DB_URL;
-	/**Êı¾İ¿âÊı¾İÔ´Ö®--Êı¾İ¿âÓÃ»§Ãû*/
+	/**æ•°æ®åº“æ•°æ®æºä¹‹--æ•°æ®åº“ç”¨æˆ·å*/
 	private static String DB_USER;
-	/**Êı¾İ¿âÊı¾İÔ´Ö®--Êı¾İ¿âÃÜÂë*/
+	/**æ•°æ®åº“æ•°æ®æºä¹‹--æ•°æ®åº“å¯†ç */
 	private static String DB_PASSWORD;
 
 	private PrintStream out = System.out;
 		
 	/**<pre>
-	 * Í¨¹ıdb.confÖĞµÄÅäÖÃ×Ö¶Î
+	 * é€šè¿‡db.confä¸­çš„é…ç½®å­—æ®µ
 	 * JDBC_DRIVER|DB_URL|DB_USER|DB_PASSWORD
-	 * Íê³ÉÇı¶¯µÄ¼ÓÔØ
+	 * å®Œæˆé©±åŠ¨çš„åŠ è½½
 	 * </pre>
 	 * */
 	ConnectionProvider() {
@@ -36,11 +36,11 @@ class ConnectionProvider implements IConnectionProvider{
 		try {
 			Class.forName(JDBC_DRIVER);
 		} catch (Exception e) {
-			out.println("Çı¶¯ÎÄ¼şÂ·¾¶ÓĞÎó£¡");
+			out.println("é©±åŠ¨æ–‡ä»¶è·¯å¾„æœ‰è¯¯ï¼");
 		}
 	}
 
-	/**Í¨¹ıµ±Ç°(´ÓÅäÖÃÎÄ¼şÖĞ)»ñµÃµÄÊı¾İÔ´²úÉúÁ¬½Ó*/
+	/**é€šè¿‡å½“å‰(ä»é…ç½®æ–‡ä»¶ä¸­)è·å¾—çš„æ•°æ®æºäº§ç”Ÿè¿æ¥*/
 	public Connection getConnection() {
 		return new ConnectionImpl(getSQLConnection());
 	}
@@ -50,9 +50,9 @@ class ConnectionProvider implements IConnectionProvider{
 		try {
 			con = java.sql.DriverManager.getConnection(DB_URL, DB_USER,
 					DB_PASSWORD);
-			out.println("µÃµ½Á¬½Ó:Connection " + (ConnectionPool.connections.size()+1));
+			out.println("å¾—åˆ°è¿æ¥:Connection " + (ConnectionPool.connections.size()+1));
 		} catch (SQLException e) {
-			out.println("Êı¾İ¿âÁ¬½Ó½¨Á¢Òì³££¡\n@shy2850@" + e.getMessage()
+			out.println("æ•°æ®åº“è¿æ¥å»ºç«‹å¼‚å¸¸ï¼\n@shy2850@" + e.getMessage()
 					+ e.getCause());
 		}
 		return con;

@@ -3,13 +3,13 @@ package com.createJavaFile.myutil;
 import java.util.*;
 import java.io.*;
 
-/**Ö÷ÅäÖÃÎÄ¼şsrc/db_conf.propertiesµÄ¶ÁÈ¡×¨ÓÃÀà*/
+/**ä¸»é…ç½®æ–‡ä»¶src/db_conf.propertiesçš„è¯»å–ä¸“ç”¨ç±»*/
 public class PropertyReader {
 	
 	static private Properties ps;
 	static private String fileName = Util.contextPath+Util.DB_CONFIG;
   
-	/**¸ü¸ÄÄ¬ÈÏµÄ×ÊÔ´ÎÄ¼şÅäÖÃ£¬²¢ÇÒ¸üĞÂ×ÊÔ´ÎÄ¼ş*/
+	/**æ›´æ”¹é»˜è®¤çš„èµ„æºæ–‡ä»¶é…ç½®ï¼Œå¹¶ä¸”æ›´æ–°èµ„æºæ–‡ä»¶*/
 	public void setFileName(String fileName) {
 		PropertyReader.fileName = fileName;
 		init();
@@ -22,21 +22,21 @@ public class PropertyReader {
 		init();
 	}
 	
-	/**¼ÓÔØ×ÊÔ´ÎÄ¼ş*/
+	/**åŠ è½½èµ„æºæ–‡ä»¶*/
 	private static void init(){
 		ps=new Properties();
 		try{
 			InputStream in = new FileInputStream(fileName);
 			ps.load(in);
 			in.close();
-		}catch(Exception e){System.out.println("ÅäÖÃÎÄ¼ş£º"+fileName+"²»´æÔÚ£¡");}
+		}catch(Exception e){System.out.println("é…ç½®æ–‡ä»¶ï¼š"+fileName+"ä¸å­˜åœ¨ï¼");}
 	}
 
-	/**»ñµÃÖ¸¶¨×Ö·û´®ÅäÖÃ*/
+	/**è·å¾—æŒ‡å®šå­—ç¬¦ä¸²é…ç½®*/
 	public static String get(String key){
 		return (String)ps.get(key);
 	}
-	/**Ïò×ÜÅäÖÃÎÄ¼şÖĞÌí¼ÓÅäÖÃ*/
+	/**å‘æ€»é…ç½®æ–‡ä»¶ä¸­æ·»åŠ é…ç½®*/
 	public static void addProperties(String key,String value){
 		ps.put(key, value);
 			try {

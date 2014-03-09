@@ -16,13 +16,13 @@ import com.shy2850.filter.ApplicationContext;
 /**
  * @author shy2850
  *         <pre>
- *         ×ª»»Æ÷µÄ¿ØÖÆÖĞĞÄ °üÀ¨¼ÓÔØÏµÍ³ÒÑ¾­Ìá¹©µÄ×ª»»Æ÷ÀàĞÍ ½ÓÊÕÓÃ»§×Ô¶¨ÒåµÄ×ª»»Æ÷ÊµÀı(ÒÑ×¢²áÀàĞÍµÄ)
+ *         è½¬æ¢å™¨çš„æ§åˆ¶ä¸­å¿ƒ åŒ…æ‹¬åŠ è½½ç³»ç»Ÿå·²ç»æä¾›çš„è½¬æ¢å™¨ç±»å‹ æ¥æ”¶ç”¨æˆ·è‡ªå®šä¹‰çš„è½¬æ¢å™¨å®ä¾‹(å·²æ³¨å†Œç±»å‹çš„)
  *         </pre>
  */
 @SuppressWarnings("unchecked")
 public class ConvertorUtils {
 	
-	/**¿ÕµÄEnumeration¶ÔÏó*/
+	/**ç©ºçš„Enumerationå¯¹è±¡*/
 	private static final Enumeration<String> EMPTY_ENUMERATIONS = new Enumeration<String>() {
 		public String nextElement() {
 			return null;
@@ -33,10 +33,10 @@ public class ConvertorUtils {
 		}
 	}; 
 
-	/** ÏµÍ³ÖĞÊÜ¹ÜÀíµÄËùÓĞµ¥ÊµÀıÓ³Éä¶ÔÏó */
+	/** ç³»ç»Ÿä¸­å—ç®¡ç†çš„æ‰€æœ‰å•å®ä¾‹æ˜ å°„å¯¹è±¡ */
 	public static Map<String, Object> beans = new HashMap<String, Object>();
 
-	/** ÏµÍ³ÒÑ¾­×¢²áµÄËùÓĞ×ª»»Æ÷ */
+	/** ç³»ç»Ÿå·²ç»æ³¨å†Œçš„æ‰€æœ‰è½¬æ¢å™¨ */
 	public static Map<Class<?>, Convertor> convertors = new HashMap<Class<?>, Convertor>();
 	static {
 		convertors.put(String.class, new StringConvertor());
@@ -53,7 +53,7 @@ public class ConvertorUtils {
 		convertors.put(long.class, new LongConvertor());
 	}
 
-	/** ´ÓrequestÇëÇóµÄ²ÎÊıÖĞÌØÕ÷ĞÔµØĞŞ¸ÄÏµÍ³¹ÜÀíµÄµ¥ÊµÀıÓ³ÉäÀà */
+	/** ä»requestè¯·æ±‚çš„å‚æ•°ä¸­ç‰¹å¾æ€§åœ°ä¿®æ”¹ç³»ç»Ÿç®¡ç†çš„å•å®ä¾‹æ˜ å°„ç±» */
 	private static void convertBeans(HttpServletRequest request, Object action)
 			throws SecurityException, NoSuchFieldException {
 		beans.clear();
@@ -70,7 +70,7 @@ public class ConvertorUtils {
 						o = ApplicationContext.getBean(bean);
 						beans.put(bean, o);
 					} catch (Exception e) {
-						DBManager.getOut().println(bean + "ÔÚÅäÖÃÎÄ¼şÖĞÎ´ÕÒµ½»òÀàĞÍÓĞÎó!\n" + e);
+						DBManager.getOut().println(bean + "åœ¨é…ç½®æ–‡ä»¶ä¸­æœªæ‰¾åˆ°æˆ–ç±»å‹æœ‰è¯¯!\n" + e);
 					}
 				}
 				String fieldName = param.substring(param.indexOf('.') + 1);
@@ -84,15 +84,15 @@ public class ConvertorUtils {
 								"set" + Util.upperFirst(field.getName()),
 								field.getType());
 					} catch (Exception e1) {
-						throw new RuntimeException(o.getClass() + "ÖĞÃ»ÓĞ" + field
-								+ "µÄset·½·¨");
+						throw new RuntimeException(o.getClass() + "ä¸­æ²¡æœ‰" + field
+								+ "çš„setæ–¹æ³•");
 					}
 					try {
 						setMethod.invoke(o, convertors.get(field.getType())
 								.parse(value));
 					} catch (Exception e) {
-						throw new RuntimeException("Ã»ÓĞ" + field.getType()
-								+ "µÄ×ª»»Æ÷£¡", e);
+						throw new RuntimeException("æ²¡æœ‰" + field.getType()
+								+ "çš„è½¬æ¢å™¨ï¼", e);
 					}
 				}
 			}
@@ -100,21 +100,21 @@ public class ConvertorUtils {
 
 	}
 
-	/** ×ª»»·½·¨ÊµÏÖÖ¸¶¨ÀàĞÍµÄ×Ö·û´®µ½ÀàĞÍ¶ÔÏóµÄ×ª»» */
+	/** è½¬æ¢æ–¹æ³•å®ç°æŒ‡å®šç±»å‹çš„å­—ç¬¦ä¸²åˆ°ç±»å‹å¯¹è±¡çš„è½¬æ¢ */
 	public static Object parseString(Class<?> clazz, String param) {
 		return convertors.get(clazz).parse(param);
 	}
 
-	/** ×Ô¶¨Òå×ª»»Æ÷ĞèÒªµÄ¾²Ì¬×¢²á·½·¨ */
+	/** è‡ªå®šä¹‰è½¬æ¢å™¨éœ€è¦çš„é™æ€æ³¨å†Œæ–¹æ³• */
 	public static void regist(Convertor convertor) {
 		if (null == convertor || null == convertor.getType()) {
 			System.out
-					.println("×¢²áÆ÷£º" + convertor + "×¢²áÊ§°Ü\n¿ÉÄÜÒòÎª¸Ã¶ÔÏó²»´æÔÚ»òÕß×¢²áÀàĞÍÎª¿Õ£¡");
+					.println("æ³¨å†Œå™¨ï¼š" + convertor + "æ³¨å†Œå¤±è´¥\nå¯èƒ½å› ä¸ºè¯¥å¯¹è±¡ä¸å­˜åœ¨æˆ–è€…æ³¨å†Œç±»å‹ä¸ºç©ºï¼");
 		}
 		convertors.put(convertor.getType(), convertor);
 	}
 
-	/** ÇëÇó·Ö·¢µ½Ö¸¶¨actionÀàÊ±Ëù×öµÄ×¼±¸¹¤×÷£ºÖ÷Òª½«Æ¥Åä(¼´Í¬Ãû)µÄaction³ÉÔ±&ÇëÇó²ÎÊıÍ¬²½ */
+	/** è¯·æ±‚åˆ†å‘åˆ°æŒ‡å®šactionç±»æ—¶æ‰€åšçš„å‡†å¤‡å·¥ä½œï¼šä¸»è¦å°†åŒ¹é…(å³åŒå)çš„actionæˆå‘˜&è¯·æ±‚å‚æ•°åŒæ­¥ */
 	public static void convertToAction(HttpServletRequest request, Object action)
 			throws SecurityException, NoSuchFieldException {
 		// System.out.println(action.getClass());
@@ -130,22 +130,22 @@ public class ConvertorUtils {
 					setMethod = clazz.getMethod("set"
 							+ Util.upperFirst(field.getName()), field.getType());
 				} catch (NoSuchMethodException e1) {
-					throw new RuntimeException(clazz + "ÖĞÃ»ÓĞ" + field + "µÄset·½·¨");
+					throw new RuntimeException(clazz + "ä¸­æ²¡æœ‰" + field + "çš„setæ–¹æ³•");
 				}
 			try {
 				setMethod.invoke(action, convertors.get(field.getType()).parse(
 						value));
 			} catch (Exception e) {
-				throw new RuntimeException("Ã»ÓĞ" + field.getType() + "µÄ×ª»»Æ÷£¡");
+				throw new RuntimeException("æ²¡æœ‰" + field.getType() + "çš„è½¬æ¢å™¨ï¼");
 			}
 		}
 		convertBeans(request, action);
 	}
 
 	/**
-	 * °´Ö¸¶¨Î»ÖÃÌí¼Óformat×Ö·û´®
-	 * @param index		Ìí¼ÓformatµÄÎ»ÖÃ£¬nullÊ±Ìí¼Óµ½½áÎ²
-	 * @param strings	ÒªÌí¼ÓµÄ×Ö·û´®
+	 * æŒ‰æŒ‡å®šä½ç½®æ·»åŠ formatå­—ç¬¦ä¸²
+	 * @param index		æ·»åŠ formatçš„ä½ç½®ï¼Œnullæ—¶æ·»åŠ åˆ°ç»“å°¾
+	 * @param strings	è¦æ·»åŠ çš„å­—ç¬¦ä¸²
 	 */
 	public static void addDateFomarts(Integer index, String...strings){
 		DateConvertor.addDateformats(index, strings);

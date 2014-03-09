@@ -11,17 +11,17 @@ import com.createJavaFile.myutil.Util;
 
 public class SuperClassDao {
 
-	/**ËùµÃÊµÌå¶ÔÏóÁĞ±íÊÇ·ñÒÑ¾­ÄæĞò*/
+	/**æ‰€å¾—å®ä½“å¯¹è±¡åˆ—è¡¨æ˜¯å¦å·²ç»é€†åº*/
 	public boolean sortChanged;
-	/**ËùµÃÊµÌå¶ÔÏóÁĞ±íÊÇ·ñĞèÒª¸üĞÂ*/
+	/**æ‰€å¾—å®ä½“å¯¹è±¡åˆ—è¡¨æ˜¯å¦éœ€è¦æ›´æ–°*/
 	public boolean needUpdate;
-	/**ÊÇ·ñ´òÓ¡SQLÓï¾ä£º´ÓÅäÖÃÎÄ¼şÖĞ»ñµÃ*/
+	/**æ˜¯å¦æ‰“å°SQLè¯­å¥ï¼šä»é…ç½®æ–‡ä»¶ä¸­è·å¾—*/
 	public static final boolean show_sql = "true".equalsIgnoreCase(PropertyReader.get(Util.SHOW_SQL));
 	
-	/**DBManager¹¤¾ß(ÓÉ±¾ÀàË½ÓĞµÄ¾²Ì¬³ÉÔ±)*/
+	/**DBManagerå·¥å…·(ç”±æœ¬ç±»ç§æœ‰çš„é™æ€æˆå‘˜)*/
 	private static DBManager manager = new DBManager();
 	
-	/**DBManager¹¤¾ß(ÓÉ±¾ÀàµÄ¶ÔÏó»ò×ÓÀà¶ÔÏóÊ¹ÓÃ)*/
+	/**DBManagerå·¥å…·(ç”±æœ¬ç±»çš„å¯¹è±¡æˆ–å­ç±»å¯¹è±¡ä½¿ç”¨)*/
 	protected DBManager dbmanager = manager;
 	protected static PrintStream out = DBManager.getOut();
 	
@@ -31,13 +31,13 @@ public class SuperClassDao {
 	public DBManager getDbmanager() {
 		return dbmanager;
 	}
-	/**Ìá½»²éÑ¯*/
+	/**æäº¤æŸ¥è¯¢*/
 	public void commit() throws SQLException{
 		int n = dbmanager.commit();
 		if(n>0)needUpdate = true;
 	}
 	
-	/**ÏµÍ³Í¨ÓÃµÄÊµÌå±£´æ·½·¨*/
+	/**ç³»ç»Ÿé€šç”¨çš„å®ä½“ä¿å­˜æ–¹æ³•*/
 	public static void persist(ParseResultSetable bean){
 		StringBuffer sb = new StringBuffer("insert into "+Util.lowerFirst(bean.getClass().getSimpleName())+" values("); 
 		String[] columns =  bean.getMemberList();
@@ -53,17 +53,17 @@ public class SuperClassDao {
 		}
 		try {
 			if(!manager.isAutoCommit()){
-				out.println("µ±Ç°Á¬½Ó²»ÊÇ×Ô¶¯Ìá½»Á¬½Ó£¡");
-				throw new SQLException("µ±Ç°Á¬½Ó²»ÊÇ×Ô¶¯Ìá½»Á¬½Ó£¡");
+				out.println("å½“å‰è¿æ¥ä¸æ˜¯è‡ªåŠ¨æäº¤è¿æ¥ï¼");
+				throw new SQLException("å½“å‰è¿æ¥ä¸æ˜¯è‡ªåŠ¨æäº¤è¿æ¥ï¼");
 			}
 			manager.executeUpdate(sql,show_sql,values);
 		} catch (SQLException e) {
 			out.println(e);
-			out.println(bean+"±£´æÊ§°Ü£¡");
+			out.println(bean+"ä¿å­˜å¤±è´¥ï¼");
 		}
 	}
 	
-	/**ÏµÍ³Í¨ÓÃµÄÊµÌåÉ¾³ı·½·¨*/
+	/**ç³»ç»Ÿé€šç”¨çš„å®ä½“åˆ é™¤æ–¹æ³•*/
 	public static void delete(ParseResultSetable bean){
 		StringBuffer sb = new StringBuffer("delete from "+Util.lowerFirst(bean.getClass().getSimpleName())+" where 1=1 "); 
 		String[] columns =  bean.getMemberList();
@@ -75,17 +75,17 @@ public class SuperClassDao {
 		String sql = sb.toString();
 		try {
 			if(!manager.isAutoCommit()){
-				out.println("µ±Ç°Á¬½Ó²»ÊÇ×Ô¶¯Ìá½»Á¬½Ó£¡");
-				throw new SQLException("µ±Ç°Á¬½Ó²»ÊÇ×Ô¶¯Ìá½»Á¬½Ó£¡");
+				out.println("å½“å‰è¿æ¥ä¸æ˜¯è‡ªåŠ¨æäº¤è¿æ¥ï¼");
+				throw new SQLException("å½“å‰è¿æ¥ä¸æ˜¯è‡ªåŠ¨æäº¤è¿æ¥ï¼");
 			}
 			manager.executeUpdate(sql,show_sql,values);
 		} catch (SQLException e) {
 			out.println(e);
-			out.println(bean+"É¾³ıÊ§°Ü£¡");
+			out.println(bean+"åˆ é™¤å¤±è´¥ï¼");
 		}
 	}
 	
-	/**ÏµÍ³Í¨ÓÃµÄÊµÌå²éÕÒ·½·¨*/
+	/**ç³»ç»Ÿé€šç”¨çš„å®ä½“æŸ¥æ‰¾æ–¹æ³•*/
 	public static List<?> getBeansByModel(ParseResultSetable bean){
 		StringBuffer sb = new StringBuffer("select * from "+Util.lowerFirst(bean.getClass().getSimpleName())+" where 1=1 "); 
 		String[] columns =  bean.getMemberList();
@@ -102,7 +102,7 @@ public class SuperClassDao {
 			resultList = manager.executeQuery(sql, show_sql, bean, values.toArray());
 		} catch (SQLException e) {
 			out.println(e);
-			out.println(bean+"²éÕÒÒì³££¡");
+			out.println(bean+"æŸ¥æ‰¾å¼‚å¸¸ï¼");
 		}
 		return resultList;
 	}
@@ -113,11 +113,11 @@ public class SuperClassDao {
 				return manager.executeQuery(sql, show_sql, bean);
 			} catch (SQLException e) {
 				out.println(e);
-				out.println(bean+"²éÕÒÒì³££¡");
+				out.println(bean+"æŸ¥æ‰¾å¼‚å¸¸ï¼");
 				return null;
 			}
 		}
-		/**ÏµÍ³Í¨ÓÃµÄÊµÌå²éÕÒ·½·¨*/
+		/**ç³»ç»Ÿé€šç”¨çš„å®ä½“æŸ¥æ‰¾æ–¹æ³•*/
 		public static List<?> findBeansByModel(ParseResultSetable bean){
 			StringBuffer sb = new StringBuffer("select * from "+Util.lowerFirst(bean.getClass().getSimpleName())+" where 1=1 "); 
 			String[] columns =  bean.getMemberList();
@@ -132,7 +132,7 @@ public class SuperClassDao {
 				resultList = manager.executeQuery(sql, show_sql, bean);
 			} catch (SQLException e) {
 				out.println(e);
-				out.println(bean+"²éÕÒÒì³££¡");
+				out.println(bean+"æŸ¥æ‰¾å¼‚å¸¸ï¼");
 			}
 			return resultList;
 		}

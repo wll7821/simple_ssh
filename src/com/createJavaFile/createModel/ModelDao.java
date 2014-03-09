@@ -7,25 +7,25 @@ import com.createJavaFile.myutil.Util;
 import com.shy2850.filter.ApplicationContext;
 
 /**<pre>
- * Í¨¹ıÄ£¿é»¯µÄÆ´½Ó×Ö·û´®
- * ´´½¨javaÎÄ¼ş
- * ÊµÏÖÊı¾İ¿â±í¶ÔÓ¦ÀàÊµÌåµÄÔöÉ¾¸Ä²éµÈ·½·¨
+ * é€šè¿‡æ¨¡å—åŒ–çš„æ‹¼æ¥å­—ç¬¦ä¸²
+ * åˆ›å»ºjavaæ–‡ä»¶
+ * å®ç°æ•°æ®åº“è¡¨å¯¹åº”ç±»å®ä½“çš„å¢åˆ æ”¹æŸ¥ç­‰æ–¹æ³•
  * </pre>
  * */
 public class ModelDao {
 	
-	/**±íÖĞËùÓĞÁĞÏîµÄ°ü×°ÀàMemberÀàĞÍÊµÀıËù×é³ÉµÄÁ´±í*/
+	/**è¡¨ä¸­æ‰€æœ‰åˆ—é¡¹çš„åŒ…è£…ç±»Memberç±»å‹å®ä¾‹æ‰€ç»„æˆçš„é“¾è¡¨*/
 	LinkedList<Member> members;
 	
-	/**Êı¾İ¿â±íÃû*/
+	/**æ•°æ®åº“è¡¨å*/
 	String table;
-	/**Êı¾İ¿â±íÃû´óĞ´*/
+	/**æ•°æ®åº“è¡¨åå¤§å†™*/
 	String Table;
-	/**Éú³ÉµÄjavaÎÄ¼şµÄ±£´æµØÖ·*/
+	/**ç”Ÿæˆçš„javaæ–‡ä»¶çš„ä¿å­˜åœ°å€*/
 	String modelUrl;
-	/**¶ÔÓ¦µÄÊµÌåÀàÎÄ¼şµÄ±£´æµØÖ·*/
+	/**å¯¹åº”çš„å®ä½“ç±»æ–‡ä»¶çš„ä¿å­˜åœ°å€*/
 	String url;
-	/**Ö÷¼ü×Ö¶ÎµÄÃû³Æ*/
+	/**ä¸»é”®å­—æ®µçš„åç§°*/
 	private String pk;
 	public void setPk(String pk) {
 		this.pk = pk;
@@ -34,8 +34,8 @@ public class ModelDao {
 		return pk;
 	}
 	/**
-	 * @param model  ModelÀàÉú³ÉµÄÓĞĞ§ÊµÀı
-	 * @param url    javaÎÄ¼şµÄ±£´æµØÖ·:Ä¬ÈÏÔÚsrcÏÂ,Èç(com.java.util)
+	 * @param model  Modelç±»ç”Ÿæˆçš„æœ‰æ•ˆå®ä¾‹
+	 * @param url    javaæ–‡ä»¶çš„ä¿å­˜åœ°å€:é»˜è®¤åœ¨srcä¸‹,å¦‚(com.java.util)
 	 */
 	public ModelDao(Model model,String url) {
 		this.table = model.table;
@@ -46,9 +46,9 @@ public class ModelDao {
 		Table = Util.upperFirst(table);
 	}
 	/**
-	 * @param model ModelÀàÉú³ÉµÄÓĞĞ§ÊµÀı
-	 * @param url   javaÎÄ¼şµÄ±£´æµØÖ·:Ä¬ÈÏÔÚsrcÏÂ,Èç(com.java.util)
-	 * @param pk	Ö÷¼üÃû³Æ
+	 * @param model Modelç±»ç”Ÿæˆçš„æœ‰æ•ˆå®ä¾‹
+	 * @param url   javaæ–‡ä»¶çš„ä¿å­˜åœ°å€:é»˜è®¤åœ¨srcä¸‹,å¦‚(com.java.util)
+	 * @param pk	ä¸»é”®åç§°
 	 */
 	public ModelDao(Model model,String url,String pk) {
 		this.table = model.table;
@@ -60,7 +60,7 @@ public class ModelDao {
 	}
 	
 
-	/**µ¼Èë°üÄ£¿éµÄĞ´Èë*/
+	/**å¯¼å…¥åŒ…æ¨¡å—çš„å†™å…¥*/
 	String include(){
 		StringBuffer sb = new StringBuffer();
 		sb.append("package "+url+";\n");
@@ -72,12 +72,12 @@ public class ModelDao {
 		sb.append("import com.createJavaFile.createModel.ParseResultSetable;\n");
 		sb.append("import com.createJavaFile.createModel.SqlColumn;\nimport "+modelUrl+"."+Table+";\n");
 		return sb.toString();
-	}  //°üÓëÒıÓÃÀàµÄµ¼Èë 
+	}  //åŒ…ä¸å¼•ç”¨ç±»çš„å¯¼å…¥ 
 	
-	/**½«µ±Ç°¶ÔÏóÁĞ±íÄæĞò*/
+	/**å°†å½“å‰å¯¹è±¡åˆ—è¡¨é€†åº*/
 	String reverse(){
 		StringBuffer sb = new StringBuffer();
-		sb.append("\n\tpublic List<"+Table+"> reverse() throws SQLException{//·´Ğò");
+		sb.append("\n\tpublic List<"+Table+"> reverse() throws SQLException{//ååº");
 		sb.append("\n\t\tif(needUpdate||null=="+table+"List)find"+Table+"s();");
 		sb.append("\n\t\tCollections.reverse("+table+"List);");
 		sb.append("\n\t\tsortChanged = !sortChanged;");
@@ -85,21 +85,21 @@ public class ModelDao {
 		sb.append("\n\t}//reverse()\n");
 		return sb.toString();
 	}
-	/**»ñµÃÊµÌå¶ÔÏóÁĞ±í*/
+	/**è·å¾—å®ä½“å¯¹è±¡åˆ—è¡¨*/
 	String tableList(){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tprivate List<"+Table+"> "+table+"List;");
 		sb.append("\n\tpublic List<"+Table+"> get"+Table+"List(){");
-		sb.append("\n\t\tif(needUpdate||null=="+table+"List)try {find"+Table+"s();}catch (SQLException e) {throw new RuntimeException(\"Êı¾İ¿âÒì³£\",e);}");
+		sb.append("\n\t\tif(needUpdate||null=="+table+"List)try {find"+Table+"s();}catch (SQLException e) {throw new RuntimeException(\"æ•°æ®åº“å¼‚å¸¸\",e);}");
 		sb.append("\n\t\treturn "+table+"List;");
 		sb.append("\n\t}//get"+Table+"List()\n");
 		return sb.toString();
 	}
 	
-	/**µÃµ½µ±Ç°¶ÔÏóÁĞ±íµÄ³¤¶È*/
+	/**å¾—åˆ°å½“å‰å¯¹è±¡åˆ—è¡¨çš„é•¿åº¦*/
 	String getCount(){
 		StringBuffer sb = new StringBuffer();
-		sb.append("\n\tpublic int getCount(){//»ñµÃ×Ü³¤");
+		sb.append("\n\tpublic int getCount(){//è·å¾—æ€»é•¿");
 		sb.append("\n\t\tif(null=="+table+"List)");
 		sb.append("\n\t\t\ttry {return find"+Table+"s().size();");
 		sb.append("\n\t\t\t} catch (SQLException e) {");
@@ -110,13 +110,13 @@ public class ModelDao {
 	}
 	
 	/**
-	 * pageSize ·ÖÒ³ÁĞ±íµÄÒ³Ãæ´óĞ¡
-	 * pageNum	·ÖÒ³ÁĞ±íµÄµ±Ç°Ò³Âë
-	 * 			·µ»Ø·ÖÒ³ËùµÃµÄ¶ÔÏóÁĞ±í(½ØÈ¡µÄ)
+	 * pageSize åˆ†é¡µåˆ—è¡¨çš„é¡µé¢å¤§å°
+	 * pageNum	åˆ†é¡µåˆ—è¡¨çš„å½“å‰é¡µç 
+	 * 			è¿”å›åˆ†é¡µæ‰€å¾—çš„å¯¹è±¡åˆ—è¡¨(æˆªå–çš„)
 	 */
 	String pageOf(){
 		StringBuffer sb = new StringBuffer();
-		sb.append("\n\tpublic List<"+Table+"> pageOf(int pageSize,int pageNum){//·ÖÒ³");
+		sb.append("\n\tpublic List<"+Table+"> pageOf(int pageSize,int pageNum){//åˆ†é¡µ");
 		sb.append("\n\t\tif(pageSize<=1||pageNum<1)return null;");
 		sb.append("\n\t\tList<"+Table+"> list = new ArrayList<"+Table+">();");
 		sb.append("\n\t\tint index = (pageNum-1)*pageSize;");
@@ -127,7 +127,7 @@ public class ModelDao {
 		return sb.toString();
 	}
 	
-	/** Ä£ºı²éÑ¯ÊµÏÖµÃµ½ÁĞ±í(ÄÚ²¿µ÷ÓÃ°æ) */
+	/** æ¨¡ç³ŠæŸ¥è¯¢å®ç°å¾—åˆ°åˆ—è¡¨(å†…éƒ¨è°ƒç”¨ç‰ˆ) */
 	private String privateFind(){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tprivate List<"+Table+"> find"+Table+"(SqlColumn...sqlColumns)throws SQLException{");
@@ -153,7 +153,7 @@ public class ModelDao {
 		return sb.toString();
 	}
 	
-	/** ¾«È·²éÑ¯ÊµÏÖµÃµ½ÁĞ±í(ÄÚ²¿µ÷ÓÃ°æ)*/
+	/** ç²¾ç¡®æŸ¥è¯¢å®ç°å¾—åˆ°åˆ—è¡¨(å†…éƒ¨è°ƒç”¨ç‰ˆ)*/
 	private String privateGet(){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tprivate List<"+Table+"> get"+Table+"(SqlColumn...sqlColumns)throws SQLException{");
@@ -179,13 +179,13 @@ public class ModelDao {
 		return sb.toString();
 	}
 	
-	/** Ä£ºı²éÑ¯ÊµÏÖµÃµ½ÁĞ±í(Íâ²¿µ÷ÓÃ°æ)*/
+	/** æ¨¡ç³ŠæŸ¥è¯¢å®ç°å¾—åˆ°åˆ—è¡¨(å¤–éƒ¨è°ƒç”¨ç‰ˆ)*/
     String publicFind(){
 		StringBuffer sb = new StringBuffer();
-		sb.append("\n\t/** Ä£ºı²éÑ¯ÊµÏÖµÃµ½ÁĞ±í");
-		sb.append("\n\t  * @param sqlColumns ´«Èë²éÑ¯µÄ²ÎÊı¶ÔÏó£¬×îºóÒ»×é²ÎÊıÈônameÊôĞÔÎª¿Õ£¬½«valueµÄtoString×÷Îªorder_byÒÀ¾İ");
-		sb.append("\n\t  * @return   ·µ»ØÒ»×é¶ÔÏóÁĞ±í");
-		sb.append("\n\t  * @throws SQLException ¿ÉÄÜÅ×³öSQLÒì³£");
+		sb.append("\n\t/** æ¨¡ç³ŠæŸ¥è¯¢å®ç°å¾—åˆ°åˆ—è¡¨");
+		sb.append("\n\t  * @param sqlColumns ä¼ å…¥æŸ¥è¯¢çš„å‚æ•°å¯¹è±¡ï¼Œæœ€åä¸€ç»„å‚æ•°è‹¥nameå±æ€§ä¸ºç©ºï¼Œå°†valueçš„toStringä½œä¸ºorder_byä¾æ®");
+		sb.append("\n\t  * @return   è¿”å›ä¸€ç»„å¯¹è±¡åˆ—è¡¨");
+		sb.append("\n\t  * @throws SQLException å¯èƒ½æŠ›å‡ºSQLå¼‚å¸¸");
 		sb.append("\n\t  */");
 		sb.append("\n\tpublic List<"+Table+"> find"+Table+"s(SqlColumn...sqlColumns)throws SQLException{");
 		sb.append("\n\t\t"+table+"List = find"+Table+"(sqlColumns);");
@@ -193,13 +193,13 @@ public class ModelDao {
 		return sb.toString();
 	}
     
-    /** ¾«È·²éÑ¯ÊµÏÖµÃµ½ÁĞ±í(Íâ²¿µ÷ÓÃ°æ) */
+    /** ç²¾ç¡®æŸ¥è¯¢å®ç°å¾—åˆ°åˆ—è¡¨(å¤–éƒ¨è°ƒç”¨ç‰ˆ) */
     String publicGet(){
 		StringBuffer sb = new StringBuffer();
-		sb.append("\n\t/** ¾«È·²éÑ¯ÊµÏÖµÃµ½ÁĞ±í");
-		sb.append("\n\t  * @param sqlColumns ´«Èë²éÑ¯µÄ²ÎÊı¶ÔÏó£¬×îºóÒ»×é²ÎÊıÈônameÊôĞÔÎª¿Õ£¬½«valueµÄtoString×÷Îªorder_byÒÀ¾İ");
-		sb.append("\n\t  * @return   ·µ»ØÒ»×é¶ÔÏóÁĞ±í");
-		sb.append("\n\t  * @throws SQLException ¿ÉÄÜÅ×³öSQLÒì³£");
+		sb.append("\n\t/** ç²¾ç¡®æŸ¥è¯¢å®ç°å¾—åˆ°åˆ—è¡¨");
+		sb.append("\n\t  * @param sqlColumns ä¼ å…¥æŸ¥è¯¢çš„å‚æ•°å¯¹è±¡ï¼Œæœ€åä¸€ç»„å‚æ•°è‹¥nameå±æ€§ä¸ºç©ºï¼Œå°†valueçš„toStringä½œä¸ºorder_byä¾æ®");
+		sb.append("\n\t  * @return   è¿”å›ä¸€ç»„å¯¹è±¡åˆ—è¡¨");
+		sb.append("\n\t  * @throws SQLException å¯èƒ½æŠ›å‡ºSQLå¼‚å¸¸");
 		sb.append("\n\t  */");
 		sb.append("\n\tpublic List<"+Table+"> get"+Table+"s(SqlColumn...sqlColumns)throws SQLException{");
 		sb.append("\n\t\t"+table+"List = get"+Table+"(sqlColumns);");
@@ -207,7 +207,7 @@ public class ModelDao {
 		return sb.toString();
 	}
 	
-    /**Ö÷¼ü²éÕÒ*/
+    /**ä¸»é”®æŸ¥æ‰¾*/
 	String getByPK(Member m){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tpublic "+Table+" get"+Table+"ByPK("+m.getType()+" "+m.getName()+") throws SQLException{");
@@ -226,7 +226,7 @@ public class ModelDao {
 				"\n\t}";
 	}
 	
-	/**±£´æÊµÌåÄ£¿éµÄĞ´Èë*/
+	/**ä¿å­˜å®ä½“æ¨¡å—çš„å†™å…¥*/
 	String saveModel(){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tpublic void save("+Table+" "+table+") throws SQLException{\n\t");
@@ -247,7 +247,7 @@ public class ModelDao {
 		return sb.toString();
 	}
 	
-	/**É¾³ıÊµÌåÄ£¿éµÄĞ´Èë*/
+	/**åˆ é™¤å®ä½“æ¨¡å—çš„å†™å…¥*/
 	String deleteModel(){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tpublic void delete(SqlColumn...sqlColumns)throws SQLException{");
@@ -264,7 +264,7 @@ public class ModelDao {
 		return sb.toString();
 	}
 	
-	/**¸üĞÂÊµÌåÄ£¿éµÄĞ´Èë*/
+	/**æ›´æ–°å®ä½“æ¨¡å—çš„å†™å…¥*/
 	String updateModel(Member m){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tpublic void update("+Table+" "+table+") throws SQLException{");
@@ -315,15 +315,15 @@ public class ModelDao {
 		return sb.toString();
 	}
 	
-	/**½«Éú³ÉµÄ×Ö·û´®Ğ´ÈëÎÄ¼ş*/
+	/**å°†ç”Ÿæˆçš„å­—ç¬¦ä¸²å†™å…¥æ–‡ä»¶*/
 	public void saveModelDao(){
 		try {
 			Util.write(toString(),"src."+url,Table+"Dao.java");
-			System.out.println("DAO¹¤¾ßÀà:"+Table+"Dao.java ÒÑ¾­´æÈë "+url);
+			System.out.println("DAOå·¥å…·ç±»:"+Table+"Dao.java å·²ç»å­˜å…¥ "+url);
 			ApplicationContext.addProperties(table+"Dao", url+"."+Table+"Dao");
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("ÎÄ¼şĞ´ÈëÒì³££¡");
+			System.out.println("æ–‡ä»¶å†™å…¥å¼‚å¸¸ï¼");
 		}
 	}
 	

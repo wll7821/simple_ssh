@@ -13,37 +13,37 @@ import com.myInterface.IConnectionProvider;
 
 
 /**<pre>
- * ConnectionPool:Á¬½Ó³Ø»ùÀà
- * ÏµÍ³ÖĞËùÊµÏÖµÄÁ¬½Ó³Ø±ØĞëÊÇ¼Ì³Ğ×Ô´ËÀàµÄ(º¬¿Õ¹¹Ôì·½·¨µÄ)·Ç³éÏóÀà
- * ´ËÀàÓÃÓÚÑ¡È¡ÏµÍ³Ëù²ÉÓÃµÄÏß³Ì³ØÀà(Í¨¹ı×ÜÅäÖÃÎÄ¼şÖĞµÄCONNECTION_POOLµÄÅäÖÃÖµ(ÀàÅäÖÃ)ÊµÏÖ)
- * ´ËÀà»¹ÓÃÓÚÌá¹©·ÖÅäÏµÍ³ËùĞèÁ¬½Ó
+ * ConnectionPool:è¿æ¥æ± åŸºç±»
+ * ç³»ç»Ÿä¸­æ‰€å®ç°çš„è¿æ¥æ± å¿…é¡»æ˜¯ç»§æ‰¿è‡ªæ­¤ç±»çš„(å«ç©ºæ„é€ æ–¹æ³•çš„)éæŠ½è±¡ç±»
+ * æ­¤ç±»ç”¨äºé€‰å–ç³»ç»Ÿæ‰€é‡‡ç”¨çš„çº¿ç¨‹æ± ç±»(é€šè¿‡æ€»é…ç½®æ–‡ä»¶ä¸­çš„CONNECTION_POOLçš„é…ç½®å€¼(ç±»é…ç½®)å®ç°)
+ * æ­¤ç±»è¿˜ç”¨äºæä¾›åˆ†é…ç³»ç»Ÿæ‰€éœ€è¿æ¥
  * </pre>
  * */
 public abstract class ConnectionPool{
 	
 	public static final String CONNECTION_PROVIDER = "CONNECTION_PROVIDER";
 	
-	/**connections£ºµ±Ç°Á¬½Ó³ØÖĞµÄËùÓĞÒÑÉú³ÉÁ¬½Ó*/
+	/**connectionsï¼šå½“å‰è¿æ¥æ± ä¸­çš„æ‰€æœ‰å·²ç”Ÿæˆè¿æ¥*/
 	protected static final ArrayList<Connection> connections = new ArrayList<Connection>();
 
-	/** ´òÓ¡SQLÓï¾äµÄPrintStream out */
+	/** æ‰“å°SQLè¯­å¥çš„PrintStream out */
 	private static PrintStream out = DBManager.getOut();
 	
-	/**ËùÑ¡µÄÁ¬½Ó³Ø£¬Í¨¹ıgetConnectionPool()·½·¨À´ÊµÏÖ*/
+	/**æ‰€é€‰çš„è¿æ¥æ± ï¼Œé€šè¿‡getConnectionPool()æ–¹æ³•æ¥å®ç°*/
 	public static ConnectionPool  connectionPoolImpl = getConnectionPool();
 	
-	/**ÒıÓÃÒ»¸öÁ¬½Ó²úÉúÆ÷¶ÔÏó*/
+	/**å¼•ç”¨ä¸€ä¸ªè¿æ¥äº§ç”Ÿå™¨å¯¹è±¡*/
 	protected IConnectionProvider provider = getConnectionProvider();
 	
-	/** ´ÓÁ¬½Ó³ØÖĞÈ¡³öÁ¬½Ó */
+	/** ä»è¿æ¥æ± ä¸­å–å‡ºè¿æ¥ */
 	public abstract Connection getConnection(); 
     
-	/** °ÑÁ¬½ÓÊÍ·Å */
+	/** æŠŠè¿æ¥é‡Šæ”¾ */
 	public abstract void releaseConnection(Connection con);
 	
 	/**<pre>
-	 * Í¨¹ıdb.confÅäÖÃÎÄ¼şÖĞCONNECTION_PROVIDERµÄÅäÖÃÖµ(ÀàÅäÖÃ)»ñÈ¡
-	 * Ã»ÓĞÅäÖÃÊ±½«Ê¹ÓÃÏµÍ³×Ô´øµÄConnectionProviderÀàÊµÏÖ
+	 * é€šè¿‡db.confé…ç½®æ–‡ä»¶ä¸­CONNECTION_PROVIDERçš„é…ç½®å€¼(ç±»é…ç½®)è·å–
+	 * æ²¡æœ‰é…ç½®æ—¶å°†ä½¿ç”¨ç³»ç»Ÿè‡ªå¸¦çš„ConnectionProviderç±»å®ç°
 	 * </pre>
 	 * */
 	private static IConnectionProvider getConnectionProvider(){
@@ -65,15 +65,15 @@ public abstract class ConnectionPool{
 	}
 	
 	/**<pre>
-	 * Í¨¹ıdb.confÅäÖÃÎÄ¼şÖĞCONNECTION_POOLµÄÅäÖÃÖµ(ÀàÅäÖÃ)»ñÈ¡
-	 * Ã»ÓĞÅäÖÃÊ±½«Ê¹ÓÃÏµÍ³×Ô´øµÄConnectionPoolImplÀàÊµÏÖ
+	 * é€šè¿‡db.confé…ç½®æ–‡ä»¶ä¸­CONNECTION_POOLçš„é…ç½®å€¼(ç±»é…ç½®)è·å–
+	 * æ²¡æœ‰é…ç½®æ—¶å°†ä½¿ç”¨ç³»ç»Ÿè‡ªå¸¦çš„ConnectionPoolImplç±»å®ç°
 	 * </pre>
 	 * */
     static ConnectionPool getConnectionPool(){
     	
 		String CONNECTION_POOL = PropertyReader.get("CONNECTION_POOL");
 		if(null == CONNECTION_POOL){
-			out.print("Á¬½Ó³ØÎª¿Õ£¬Ê¹ÓÃÄ¬ÈÏÁ¬½Ó³Ø£¡");
+			out.print("è¿æ¥æ± ä¸ºç©ºï¼Œä½¿ç”¨é»˜è®¤è¿æ¥æ± ï¼");
 			CONNECTION_POOL = "com.createJavaFile.connectionSource.ConnectionPoolImpl";
 		}
 		ConnectionPool connectionPool = null;
@@ -89,13 +89,13 @@ public abstract class ConnectionPool{
 		return connectionPool;
 	}
     
-    /**ÖØĞ´ObjectµÄfinalize()·½·¨£¬ÊµÏÖÔÚÏú»ÙÇ°¹Ø±ÕËùÓĞ³ØÖĞµÄÁ¬½Ó*/
+    /**é‡å†™Objectçš„finalize()æ–¹æ³•ï¼Œå®ç°åœ¨é”€æ¯å‰å…³é—­æ‰€æœ‰æ± ä¸­çš„è¿æ¥*/
     protected void finalize() {
     	out.println("ConnectionPool.finalize()");
         close();
       }
 
-    /** ¹Ø±ÕÁ¬½Ó³Ø*/	
+    /** å…³é—­è¿æ¥æ± */	
     public void close() {
         Iterator<Connection> iter = connections.iterator();
         while ( iter.hasNext()) {

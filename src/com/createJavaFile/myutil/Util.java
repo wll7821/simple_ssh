@@ -11,39 +11,39 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**ORM¿ò¼ÜµÄ¹¤¾ßÀà*/
+/**ORMæ¡†æ¶çš„å·¥å…·ç±»*/
 public class Util {
 	
-	/**µ¼°ü×Ö·û´®*/
+	/**å¯¼åŒ…å­—ç¬¦ä¸²*/
 	public static final String IMPORT_DATE = "import java.util.Date;\nimport com.shy2850.filter.DateFormat;";
-	/**µ¼°ü×Ö·û´®*/
+	/**å¯¼åŒ…å­—ç¬¦ä¸²*/
 	public static final String IMPORT_BLOB = "import java.sql.Blob;";
-	/**Ö÷ÅäÖÃÎÄ¼şÃû*/
+	/**ä¸»é…ç½®æ–‡ä»¶å*/
 	public static final String DB_CONFIG = "conf/db_conf.properties";
-	/**JDBCÇı¶¯ÀàÃû*/
+	/**JDBCé©±åŠ¨ç±»å*/
 	public static final String JDBC_DRIVER = "JDBC_DRIVER";
-	/**Êı¾İ¿âÁ¬½ÓURL×Ö¶Î*/
+	/**æ•°æ®åº“è¿æ¥URLå­—æ®µ*/
 	public static final String DB_URL = "DB_URL";
-	/**Êı¾İ¿âÓÃ»§Ãû×Ö¶Î*/
+	/**æ•°æ®åº“ç”¨æˆ·åå­—æ®µ*/
 	public static final String DB_USER = "DB_USER";
-	/**Êı¾İ¿â¶ÔÓ¦ÃÜÂë×Ö¶Î*/
+	/**æ•°æ®åº“å¯¹åº”å¯†ç å­—æ®µ*/
 	public static final String DB_PASSWORD = "DB_PASSWORD";
-	/**Ñ¡ÓÃÁ¬½Ó³ØÅäÖÃ×Ö¶Î*/
+	/**é€‰ç”¨è¿æ¥æ± é…ç½®å­—æ®µ*/
 	public static final String CONNECTION_POOL = "CONNECTION_POOL";
-	/**Ä¬ÈÏµÄ´òÓ¡SQLÓï¾äÅäÖÃ×Ö¶Î*/
+	/**é»˜è®¤çš„æ‰“å°SQLè¯­å¥é…ç½®å­—æ®µ*/
 	public static final String SHOW_SQL = "SHOW_SQL";
-	/**Ìø×ªÅäÖÃÎÄ¼şµÄÖ¸¶¨ÅäÖÃ×Ö¶Î*/
+	/**è·³è½¬é…ç½®æ–‡ä»¶çš„æŒ‡å®šé…ç½®å­—æ®µ*/
 	public static final String FORWARD_CONF = "ApplicationForwards";
-	/**Ó¦ÓÃ³ÌĞòÀàÅäÖÃÎÄ¼şµÄÖ¸¶¨ÅäÖÃ×Ö¶Î*/
+	/**åº”ç”¨ç¨‹åºç±»é…ç½®æ–‡ä»¶çš„æŒ‡å®šé…ç½®å­—æ®µ*/
 	public static final String BEAN_CONF = "ApplicationBeans";
-	/**±¸·İÊı¾İĞèÒª±£´æµÄµØÖ·ÅäÖÃ*/
+	/**å¤‡ä»½æ•°æ®éœ€è¦ä¿å­˜çš„åœ°å€é…ç½®*/
 	public static final String PERSIST_CONF = "persist_conf";
-	/**ÇëÇó·Ö·¢µÄÀàÓë·½·¨Ö®¼äµÄ·Ö¸ô·ûÅäÖÃ*/
+	/**è¯·æ±‚åˆ†å‘çš„ç±»ä¸æ–¹æ³•ä¹‹é—´çš„åˆ†éš”ç¬¦é…ç½®*/
 	public static final String DIVID_CONFIG = "divid";
-	/**Ä¬ÈÏµÄÅäÖÃÎÄ¼şÎ»ÖÃ*/
+	/**é»˜è®¤çš„é…ç½®æ–‡ä»¶ä½ç½®*/
 	public static String contextPath = "WebRoot/";
 	
-	/**ÀàĞÍ×ª»»Æ÷*/
+	/**ç±»å‹è½¬æ¢å™¨*/
 	public static String getType(String type) {
 		if ("java.lang.Integer".equals(type))
 			return "Integer";
@@ -67,7 +67,7 @@ public class Util {
 		return type;
 	}
 
-	/**´ËORM¿ò¼ÜµÄÊ××ÖÄ¸´óĞ´¹«ÓÃ·½·¨*/
+	/**æ­¤ORMæ¡†æ¶çš„é¦–å­—æ¯å¤§å†™å…¬ç”¨æ–¹æ³•*/
 	public static String upperFirst(String s) {
 		if (null == s)
 			return null;
@@ -83,14 +83,14 @@ public class Util {
 		}
 	}
 
-	/**×Ö·û´®Ê××ÖÄ¸ÊÇ·ñ´óĞ´*/
+	/**å­—ç¬¦ä¸²é¦–å­—æ¯æ˜¯å¦å¤§å†™*/
 	public static boolean isUpperCase(char first) {
 		if (first >= 'A' && first <= 'Z')
 			return true;
 		return false;
 	}
 
-	/**Ê××ÖÄ¸Ğ¡Ğ´µÄ¹«ÓÃ·½·¨*/
+	/**é¦–å­—æ¯å°å†™çš„å…¬ç”¨æ–¹æ³•*/
 	public static String lowerFirst(String s) {
 		if (null == s)
 			return null;
@@ -106,7 +106,7 @@ public class Util {
 		}
 	}
 
-	/**×Ö·û´®Ê××ÖÄ¸ÊÇ·ñĞ¡Ğ´*/
+	/**å­—ç¬¦ä¸²é¦–å­—æ¯æ˜¯å¦å°å†™*/
 	public static boolean isLowerCase(char first) {
 		if (first >= 'a' && first <= 'z')
 			return true;
@@ -114,10 +114,10 @@ public class Util {
 	}
 	
 	/**
-	 * ×Ö·û´®Ğ´ÈëÎÄ¼şµÄ¹¤¾ß
-	 * @param info   ÒªĞ´ÈëµÄ×Ö·û´®
-	 * @param url    ÒªĞ´ÈëµÄÎÄ¼ş¼Ğ(²»´æÔÚÊ±»á×Ô¶¯´´½¨)
-	 * @param fileName  ÎÄ¼şÃû
+	 * å­—ç¬¦ä¸²å†™å…¥æ–‡ä»¶çš„å·¥å…·
+	 * @param info   è¦å†™å…¥çš„å­—ç¬¦ä¸²
+	 * @param url    è¦å†™å…¥çš„æ–‡ä»¶å¤¹(ä¸å­˜åœ¨æ—¶ä¼šè‡ªåŠ¨åˆ›å»º)
+	 * @param fileName  æ–‡ä»¶å
 	 * @throws IOException
 	 */
 	public static void write(String info, String url, String fileName)
@@ -135,9 +135,9 @@ public class Util {
 	}
 
 	/**<pre>
-	 * Ò»¸öºÜÍ¨ÓÃµÄclose·½·¨
-	 * ¿ÉÒÔ¹Ø±Õsql°üÖĞµÄConnection¡¢ResultSet¡¢Statement
-	 * ÒÔ¼°Closeable½Ó¿ÚµÄ¶ÔÏó
+	 * ä¸€ä¸ªå¾ˆé€šç”¨çš„closeæ–¹æ³•
+	 * å¯ä»¥å…³é—­sqlåŒ…ä¸­çš„Connectionã€ResultSetã€Statement
+	 * ä»¥åŠCloseableæ¥å£çš„å¯¹è±¡
 	 * </pre>
 	 * */
 	public static void close(Object o) {
@@ -155,25 +155,25 @@ public class Util {
 			else
 				;
 		} catch (SQLException e) {
-			System.out.println("SQL¹Ø±ÕÒì³££¡");
+			System.out.println("SQLå…³é—­å¼‚å¸¸ï¼");
 		} catch (IOException e) {
-			System.out.println("IO¹Ø±ÕÒì³££¡");
+			System.out.println("IOå…³é—­å¼‚å¸¸ï¼");
 		} finally {
 			o = null;
 		}
 	}
 	
-	/**¶Ô×Ö·û´®½øĞĞ¹æ¶¨±àÂëÀàĞÍµÄMD5×ªÂë*/
+	/**å¯¹å­—ç¬¦ä¸²è¿›è¡Œè§„å®šç¼–ç ç±»å‹çš„MD5è½¬ç */
 	public static String md5(String s){
 		return md5(s, "UTF-8" , false);
 	}
 	
-	/**¶Ô×Ö·û´®½øĞĞ¹æ¶¨±àÂëÀàĞÍµÄMD5×ªÂë*/
+	/**å¯¹å­—ç¬¦ä¸²è¿›è¡Œè§„å®šç¼–ç ç±»å‹çš„MD5è½¬ç */
 	public static String md5(String s,String Encode){
 		return md5(s, Encode, false);
 	}
 	
-	/**¶Ô×Ö·û´®½øĞĞ¹æ¶¨±àÂëÀàĞÍµÄMD5×ªÂë*/
+	/**å¯¹å­—ç¬¦ä¸²è¿›è¡Œè§„å®šç¼–ç ç±»å‹çš„MD5è½¬ç */
 	public static String md5(String s,String Encode,boolean b) {
 		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");

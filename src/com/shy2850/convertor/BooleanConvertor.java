@@ -1,6 +1,6 @@
 package com.shy2850.convertor;
 
-/**ϵͳת����BooleanConvertor*/
+/**系统转换器BooleanConvertor*/
 class BooleanConvertor extends Convertor {
 
 	public BooleanConvertor() {

@@ -11,7 +11,7 @@ import com.myInterface.Connection;
 import com.myInterface.PreparedStatement;
 import com.myInterface.Statement;
 
-/**包装java.sql.Connection的接口实现类*/
+/**鍖呰java.sql.Connection鐨勬帴鍙ｅ疄鐜扮被*/
 public class ConnectionImpl implements Connection {
 
 	private static final long serialVersionUID = 8933680610988795520L;

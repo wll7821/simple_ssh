@@ -15,18 +15,18 @@ import com.createJavaFile.myutil.Util;
 import com.shy2850.injection.AnnotationInjection;
 import com.shy2850.injection.SetMethodInjection;
 
-/**Ó¦ÓÃ³ÌĞòÈ«¾Ö¹ÜÀíÀà£º
- * Ö÷ÒªÓÃÀ´¶ÁÈ¡ÅäÖÃÎÄ¼ş»ñµÃ¶ÔÏó£¬ÒÔ¼°×¢Èë¶ÔÏó³ÉÔ±
+/**åº”ç”¨ç¨‹åºå…¨å±€ç®¡ç†ç±»ï¼š
+ * ä¸»è¦ç”¨æ¥è¯»å–é…ç½®æ–‡ä»¶è·å¾—å¯¹è±¡ï¼Œä»¥åŠæ³¨å…¥å¯¹è±¡æˆå‘˜
  * */
 public class ApplicationContext {
-	/**ÊÇ·ñÊ¹ÓÃset·½·¨×¢ÈëµÄÅäÖÃ×Ö¶Î£¬Ä¬ÈÏÎªtrue*/
+	/**æ˜¯å¦ä½¿ç”¨setæ–¹æ³•æ³¨å…¥çš„é…ç½®å­—æ®µï¼Œé»˜è®¤ä¸ºtrue*/
 	public static final String SET_METHOD_INJECT = "SET_METHOD_INJECT";
-	/**ÊÇ·ñÊ¹ÓÃ×¢½â·½Ê½×¢ÈëµÄÅäÖÃ×Ö¶Î£¬Ä¬ÈÏÎªfalse*/
+	/**æ˜¯å¦ä½¿ç”¨æ³¨è§£æ–¹å¼æ³¨å…¥çš„é…ç½®å­—æ®µï¼Œé»˜è®¤ä¸ºfalse*/
 	public static final String ANNOTATION_INJECT = "ANNOTATION_INJECT";
 	
-	/**ÀàÅäÖÃ¶ÔÏóµÄMapping*/
+	/**ç±»é…ç½®å¯¹è±¡çš„Mapping*/
 	static protected Properties propBeans;
-	/**Ó¦ÓÃ³ÌĞò¹ÜÀíµÄËùÓĞ±»Ó³ÉäÀà¶ÔÏóµÄµ¥ÊµÀıMapping*/
+	/**åº”ç”¨ç¨‹åºç®¡ç†çš„æ‰€æœ‰è¢«æ˜ å°„ç±»å¯¹è±¡çš„å•å®ä¾‹Mapping*/
 	static protected Map<String, Object> allBeans;
 	  static{
 		  propBeans=new Properties();
@@ -36,7 +36,7 @@ public class ApplicationContext {
 	    		InputStream in = new FileInputStream(Util.contextPath+beanProp);
 	    		propBeans.load(in);
 	    		in.close();
-	    	}catch(Exception e){System.out.println("ÅäÖÃÎÄ¼ş£º"+beanProp+"²»´æÔÚ£¡");}
+	    	}catch(Exception e){System.out.println("é…ç½®æ–‡ä»¶ï¼š"+beanProp+"ä¸å­˜åœ¨ï¼");}
 		  }
 	  }
 	  
@@ -50,7 +50,7 @@ public class ApplicationContext {
 				Object value = Class.forName(bean).newInstance();
 				allBeans.put(key, value);
 			} catch (Exception e) {
-				System.err.println(key + "µÄÅäÖÃÀà²»´æÔÚ»òÕß"+bean+"¹¹Ôì·½·¨²»ºÏ·¨£¡");
+				System.err.println(key + "çš„é…ç½®ç±»ä¸å­˜åœ¨æˆ–è€…"+bean+"æ„é€ æ–¹æ³•ä¸åˆæ³•ï¼");
 			}
 		}
 	  }
@@ -64,12 +64,12 @@ public class ApplicationContext {
 		    }
 		}
 	  
-	  /**Ó¦ÓÃ³ÌĞò¹ÜÀíµÄµ¥ÊµÀı¶ÔÏóÍ¨¹ı×Ö·û´®»ñµÃ*/
+	  /**åº”ç”¨ç¨‹åºç®¡ç†çš„å•å®ä¾‹å¯¹è±¡é€šè¿‡å­—ç¬¦ä¸²è·å¾—*/
 	  public static Object getBean(String key){
 	     return allBeans.get(key);
 	  }
 	  
-	  /**³ÌĞòÌí¼ÓÊµÏÖÀà¶ÔÏóµÄÓ³Éä*/
+	  /**ç¨‹åºæ·»åŠ å®ç°ç±»å¯¹è±¡çš„æ˜ å°„*/
 	  public static void addProperties(String key,String value){
 			propBeans.put(key, value);
 			try {

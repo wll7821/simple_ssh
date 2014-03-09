@@ -9,19 +9,19 @@ import java.util.Date;
 import com.createJavaFile.myutil.Util;
 import com.shy2850.filter.DateFormat;
 
-/**ÈÕÖ¾OutputStreamÉèÖÃ*/
+/**æ—¥å¿—OutputStreamè®¾ç½®*/
 public class LogOutputStream extends PrintStream{
 	
-	/**Ä¬ÈÏµÄÈÕÖ¾Êä³öÎÄ¼şÃû*/
+	/**é»˜è®¤çš„æ—¥å¿—è¾“å‡ºæ–‡ä»¶å*/
 	private static String fileName = "conf/easyWebSqlBean.log";
-	/**Ä¬ÈÏµÄÈÕÖ¾Êä³öÎÄ¼ş*/
+	/**é»˜è®¤çš„æ—¥å¿—è¾“å‡ºæ–‡ä»¶*/
 	private static File file = initLogFile(); 
 	
 	public LogOutputStream() throws FileNotFoundException{
 		super(file);
 	}
 
-	/**³õÊ¼»¯ÈÕÖ¾ÎÄ¼şÉèÖÃ*/
+	/**åˆå§‹åŒ–æ—¥å¿—æ–‡ä»¶è®¾ç½®*/
 	private static File initLogFile() {
 		File f = new File(Util.contextPath + fileName);
 		if(!f.exists()){
@@ -34,7 +34,7 @@ public class LogOutputStream extends PrintStream{
 		return f;
 	}
 	
-	/**ÉèÖÃÈÕÖ¾ÎÄ¼şÃû*/
+	/**è®¾ç½®æ—¥å¿—æ–‡ä»¶å*/
 	public static void setFileName(String fileName) {
 		if(null == fileName || fileName.length() == 0)return;
 		LogOutputStream.fileName = fileName;

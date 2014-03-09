@@ -8,13 +8,13 @@ import java.util.Map.Entry;
 import com.shy2850.filter.ApplicationContext;
 
 /**
- * ×¢½âInjection±ê×¢µÄfield×Ö¶Î×¢ÈëÊµÏÖÀà
+ * æ³¨è§£Injectionæ ‡æ³¨çš„fieldå­—æ®µæ³¨å…¥å®žçŽ°ç±»
  * @author shy2850
  * @version 1.0
  */
 public class AnnotationInjection extends ApplicationContext{
 	
-	/**ÊµÏÖ×¢½â±ê×¢µÄfield×¢Èë*/
+	/**å®žçŽ°æ³¨è§£æ ‡æ³¨çš„fieldæ³¨å…¥*/
 	public static void inject(){
 		System.out.println("AnnotationInjection.inject()");
 		  Set<Entry<String, Object>> beans = allBeans.entrySet();

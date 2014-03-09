@@ -15,41 +15,41 @@ import com.createJavaFile.myutil.Util;
 import com.shy2850.filter.ApplicationContext;
 
 /**
- * ÉèÖÃ×Ô¶¯Íê³Éµ±Ç°Êı¾İ¿âÖĞµÄËùÓĞ±íÏî×Ô¶¯Éú³ÉÓ³ÉäjavaÀà¡£
+ * è®¾ç½®è‡ªåŠ¨å®Œæˆå½“å‰æ•°æ®åº“ä¸­çš„æ‰€æœ‰è¡¨é¡¹è‡ªåŠ¨ç”Ÿæˆæ˜ å°„javaç±»ã€‚
  */
 public class DBAutoRun {
-	/**DerbyÊı¾İ¿âµÄJDBCÁ¬½Ó¹æ·¶*/
+	/**Derbyæ•°æ®åº“çš„JDBCè¿æ¥è§„èŒƒ*/
 	public static final SQLDialog DERBY = new SQLDialog("DERBY","org.apache.derby.jdbc.ClientDriver", "jdbc:derby://<hostName>:<port>/<databaseName>",1527);
-	/**MySqlÊı¾İ¿âµÄJDBCÁ¬½Ó¹æ·¶*/
+	/**MySqlæ•°æ®åº“çš„JDBCè¿æ¥è§„èŒƒ*/
 	public static final SQLDialog MYSQL = new SQLDialog("MYSQL","com.mysql.jdbc.Driver","jdbc:mysql://<hostName>:<port>/<databaseName>",3306);
-	/**SqlServerÊı¾İ¿âµÄJDBCÁ¬½Ó¹æ·¶*/
+	/**SqlServeræ•°æ®åº“çš„JDBCè¿æ¥è§„èŒƒ*/
 	public static final SQLDialog SQLSERVER = new SQLDialog("SQLSERVER","com.microsoft.sqlserver.jdbc.SQLServerDriver","jdbc:sqlserver://<hostName>:<port>;DatabaseName=<databaseName>",1433);
-	/**DB2Êı¾İ¿âµÄJDBCÁ¬½Ó¹æ·¶*/
+	/**DB2æ•°æ®åº“çš„JDBCè¿æ¥è§„èŒƒ*/
 	public static final SQLDialog DB2 = new SQLDialog("DB2","com.ibm.db2.jcc.DB2Driver","jdbc:db2://<hostName>:<port>/<databaseName>",5000);
-	/**OracleÊı¾İ¿âµÄJDBCÁ¬½Ó¹æ·¶*/
+	/**Oracleæ•°æ®åº“çš„JDBCè¿æ¥è§„èŒƒ*/
 	public static final SQLDialog ORACLE = new SQLDialog("ORACLE","oracle.jdbc.driver.OracleDriver","jdbc:oracle:thin:@<hostName>:<port>:<databaseNamename>",1521);
-	/**Windows-AccessÊı¾İ¿âµÄJDBCÁ¬½Ó¹æ·¶*/
+	/**Windows-Accessæ•°æ®åº“çš„JDBCè¿æ¥è§„èŒƒ*/
 	public static final SQLDialog ACCESS = new SQLDialog("ACCESS","sun.jdbc.odbc.JdbcOdbcDriver","jdbc:odbc:<databaseName>",0);
-	/**PostgreSqlÊı¾İ¿âµÄJDBCÁ¬½Ó¹æ·¶*/
+	/**PostgreSqlæ•°æ®åº“çš„JDBCè¿æ¥è§„èŒƒ*/
 	public static final SQLDialog POSTGRE = new SQLDialog("POSTGRE","org.postgresql.Driver","jdbc:postgresql://<hostName>:<port>/<databaseName>",5432);
-	/**SybaseSqlÊı¾İ¿âµÄJDBCÁ¬½Ó¹æ·¶*/
+	/**SybaseSqlæ•°æ®åº“çš„JDBCè¿æ¥è§„èŒƒ*/
 	public static final SQLDialog SYBASE = new SQLDialog("SYBASE","com.sybase.jdbc3.jdbc.SybDriver","jdbc:sybase:Tds:<hostName>:<port>/<databaseName>",2638);
 	
 	
 	private Connection conn = new ConnectionProvider().getSQLConnection();
-	/**ÊµÌåÀàÎÄ¼ş±£´æµØÖ·*/
+	/**å®ä½“ç±»æ–‡ä»¶ä¿å­˜åœ°å€*/
 	private String poURL = "com.bean.po";
-	/**DAOÀàÎÄ¼ş±£´æµØÖ·*/
+	/**DAOç±»æ–‡ä»¶ä¿å­˜åœ°å€*/
 	private String daoURL= "com.bean.dao";
 	
-	/**Êı¾İ¿âËùÓĞÒªÉú³ÉÀàÎÄ¼şµÄ¹ØÁª±íÏîÃû*/
+	/**æ•°æ®åº“æ‰€æœ‰è¦ç”Ÿæˆç±»æ–‡ä»¶çš„å…³è”è¡¨é¡¹å*/
 	private List<String> tables = new ArrayList<String>();
-	/**Êı¾İ¿âËùÓĞÒªÉú³ÉÀàÎÄ¼şµÄ¹ØÁª±íÏîµÄÖ÷¼üÃû³Æ*/
+	/**æ•°æ®åº“æ‰€æœ‰è¦ç”Ÿæˆç±»æ–‡ä»¶çš„å…³è”è¡¨é¡¹çš„ä¸»é”®åç§°*/
 	private List<String> pks = new ArrayList<String>();
 	{init();}
 	
 	/**
-	 * ³õÊ¼»¯µ±Ç°Êı¾İ¿âÁ¬½Ó£¬²¢ÇÒÍê³É¶ÁÈ¡ËùÓĞÊı¾İ¿â±íÒÔ¼°Ö÷¼ü
+	 * åˆå§‹åŒ–å½“å‰æ•°æ®åº“è¿æ¥ï¼Œå¹¶ä¸”å®Œæˆè¯»å–æ‰€æœ‰æ•°æ®åº“è¡¨ä»¥åŠä¸»é”®
 	 * */
 	private void init(){
 		DatabaseMetaData mtdt = null;
@@ -82,24 +82,24 @@ public class DBAutoRun {
 	}
 
 	/**
-	 * ÉèÖÃ×Ô¶¯Íê³Éµ±Ç°Êı¾İ¿âÖĞµÄËùÓĞ±íÏî×Ô¶¯Éú³ÉÓ³ÉäjavaÀà¡£
+	 * è®¾ç½®è‡ªåŠ¨å®Œæˆå½“å‰æ•°æ®åº“ä¸­çš„æ‰€æœ‰è¡¨é¡¹è‡ªåŠ¨ç”Ÿæˆæ˜ å°„javaç±»ã€‚
 	 */
 	public DBAutoRun() {
 		
 	}
 	/**
-	 * ÉèÖÃ×Ô¶¯Íê³Éµ±Ç°Êı¾İ¿âÖĞµÄËùÓĞ±íÏî×Ô¶¯Éú³ÉÓ³ÉäjavaÀà¡£
-	 * @param poURL		ÊµÌåÀàµÄjavaÎÄ¼şÉú³ÉµØÖ·
-	 * @param daoURL	DAOÀàµÄjavaÎÄ¼şÉú³ÉµØÖ·
+	 * è®¾ç½®è‡ªåŠ¨å®Œæˆå½“å‰æ•°æ®åº“ä¸­çš„æ‰€æœ‰è¡¨é¡¹è‡ªåŠ¨ç”Ÿæˆæ˜ å°„javaç±»ã€‚
+	 * @param poURL		å®ä½“ç±»çš„javaæ–‡ä»¶ç”Ÿæˆåœ°å€
+	 * @param daoURL	DAOç±»çš„javaæ–‡ä»¶ç”Ÿæˆåœ°å€
 	 */
 	public DBAutoRun(String poURL,String daoURL) {
 		this.poURL = poURL;
 		this.daoURL = daoURL;
 	}
 	
-	/**ÅäÖÃÎÄ¼şÉú³ÉÒÔºóÓÃÀ´×Ô¶¯ÔËĞĞÉú³ÉjavaÎÄ¼ş*/
+	/**é…ç½®æ–‡ä»¶ç”Ÿæˆä»¥åç”¨æ¥è‡ªåŠ¨è¿è¡Œç”Ÿæˆjavaæ–‡ä»¶*/
 	public void autoRun() {
-		if(!new File(Util.contextPath+Util.DB_CONFIG).isFile())throw new RuntimeException("ÅäÖÃÎÄ¼ş²»´æÔÚ£¡");
+		if(!new File(Util.contextPath+Util.DB_CONFIG).isFile())throw new RuntimeException("é…ç½®æ–‡ä»¶ä¸å­˜åœ¨ï¼");
 		for (int i = 0; i < tables.size(); i++) {
 			Model model = new Model(tables.get(i), poURL, pks.get(i));
 			model.saveModel();
@@ -109,8 +109,8 @@ public class DBAutoRun {
 	}
 	 
 	/**
-	 * °´ÕÕ±íÃûÒÆ³ı²»ĞèÒªÉú³ÉÓ³ÉäÀàµÄÊı¾İ¿â±í
-	 * @param tableNames Êı¾İ¿â±íÃû¡£ 
+	 * æŒ‰ç…§è¡¨åç§»é™¤ä¸éœ€è¦ç”Ÿæˆæ˜ å°„ç±»çš„æ•°æ®åº“è¡¨
+	 * @param tableNames æ•°æ®åº“è¡¨åã€‚ 
 	 */
 	public void remove(String...tableNames){
 		for (int i = 0; i < tableNames.length; i++) {
@@ -127,13 +127,13 @@ public class DBAutoRun {
 	/**
 	 * 
 	 * @param JDBC_DRIVER
-	 *            JDBCÇı¶¯ÀàÃû Èç: com.mysql.jdbc.Driver
+	 *            JDBCé©±åŠ¨ç±»å å¦‚: com.mysql.jdbc.Driver
 	 * @param DB_URL
-	 *            Êı¾İ¿âÁ¬½ÓURL Èç:jdbc:mysql://localhost:3306/u-disk
+	 *            æ•°æ®åº“è¿æ¥URL å¦‚:jdbc:mysql://localhost:3306/u-disk
 	 * @param DB_USER
-	 *            Êı¾İ¿âÓÃ»§Ãû
+	 *            æ•°æ®åº“ç”¨æˆ·å
 	 * @param DB_PASSWORD
-	 *            Êı¾İ¿â¶ÔÓ¦ÃÜÂë
+	 *            æ•°æ®åº“å¯¹åº”å¯†ç 
 	 */
 	private static void setConfig(String JDBC_DRIVER, String DB_URL, String DB_USER,
 			String DB_PASSWORD) {
@@ -165,35 +165,35 @@ public class DBAutoRun {
 				PropertyReader.addProperties(Util.DIVID_CONFIG, "$");
 				PropertyReader.addProperties(Util.PERSIST_CONF, "conf/PersistObj.properties");
 				new File(Util.contextPath+"conf/ApplicationForwards.properties").createNewFile();
-				System.out.println("ÅäÖÃÎÄ¼şÒÑ¾­Éú³É");
+				System.out.println("é…ç½®æ–‡ä»¶å·²ç»ç”Ÿæˆ");
 			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
 	/**
-	 * ¿ò¼ÜµÄÆğÊ¼µã£ºÉú³É»ù´¡ÅäÖÃÎÄ¼ş
-	 * @param dialog		²ÉÓÃµÄÊı¾İ¿âÖÖÀàËù¶ÔÓ¦µÄÁ¬½Ó¹æ·¶
-	 * @param hostName		Êı¾İ¿âËùÔÚIP
-	 * @param databaseName	½«Òª²Ù×÷µÄÊı¾İ¿âÃû³Æ
-	 * @param user			Êı¾İ¿âÓÃ»§Ãû
-	 * @param password		Êı¾İ¿âÃÜÂë
+	 * æ¡†æ¶çš„èµ·å§‹ç‚¹ï¼šç”ŸæˆåŸºç¡€é…ç½®æ–‡ä»¶
+	 * @param dialog		é‡‡ç”¨çš„æ•°æ®åº“ç§ç±»æ‰€å¯¹åº”çš„è¿æ¥è§„èŒƒ
+	 * @param hostName		æ•°æ®åº“æ‰€åœ¨IP
+	 * @param databaseName	å°†è¦æ“ä½œçš„æ•°æ®åº“åç§°
+	 * @param user			æ•°æ®åº“ç”¨æˆ·å
+	 * @param password		æ•°æ®åº“å¯†ç 
 	 */
 	public static void setConfig(SQLDialog dialog, String hostName, String databaseName, String user, String password){
 		setConfig(dialog.driver, dialog.getUrl(hostName, databaseName), user, password);
 	}
 	
-	/**Ö¸¶¨µÄÊı¾İ¿âÁ¬½ÓJDBC¸ñÊ½*/
+	/**æŒ‡å®šçš„æ•°æ®åº“è¿æ¥JDBCæ ¼å¼*/
 	public static class SQLDialog{
 		private String name;
 		private String driver;
 		private String urlPattern;
 		
 		/**
-		 * @param name		µ±Ç°¹æ·¶µÄÃû³Æ
-		 * @param driver	¸ÃÊı¾İ¿âµÄJDBCÇı¶¯ÀàÂ·¾¶Ãû³Æ
-		 *@param urlPattern	µ±Ç°Êı¾İ¿â¸ñÊ½ÖĞµÄURLÅäÖÃ¹æ·¶
-		 * @param port		Êı¾İ¿â·şÎñµÄ¶Ë¿ÚºÅ
+		 * @param name		å½“å‰è§„èŒƒçš„åç§°
+		 * @param driver	è¯¥æ•°æ®åº“çš„JDBCé©±åŠ¨ç±»è·¯å¾„åç§°
+		 *@param urlPattern	å½“å‰æ•°æ®åº“æ ¼å¼ä¸­çš„URLé…ç½®è§„èŒƒ
+		 * @param port		æ•°æ®åº“æœåŠ¡çš„ç«¯å£å·
 		 */
 		private SQLDialog(String name, String driver,String urlPattern,int port) {
 			this.name = name;
@@ -202,9 +202,9 @@ public class DBAutoRun {
 		}
 		
 		/**
-		 * »ñÈ¡·ûºÏµ±Ç°¹æ·¶µÄURL
-		 * @param hostName		Êı¾İ¿âËùÔÚIP
-		 * @param databaseName	Êı¾İ¿âÃû³Æ
+		 * è·å–ç¬¦åˆå½“å‰è§„èŒƒçš„URL
+		 * @param hostName		æ•°æ®åº“æ‰€åœ¨IP
+		 * @param databaseName	æ•°æ®åº“åç§°
 		 * @return
 		 */
 		public String getUrl(String hostName,String databaseName) {

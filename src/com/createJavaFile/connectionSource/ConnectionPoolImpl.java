@@ -4,7 +4,7 @@ package com.createJavaFile.connectionSource;
 import com.createJavaFile.connectionSource.ConnectionPool;
 import com.myInterface.Connection;
 
-/**Á¬½Ó³ØµÄÒ»¸ö×î¼òµ¥µÄÊµÏÖÑùÀı*/
+/**è¿æ¥æ± çš„ä¸€ä¸ªæœ€ç®€å•çš„å®ç°æ ·ä¾‹*/
 public class ConnectionPoolImpl extends ConnectionPool {
 	private int index;
 	public static int MAXCONNECTIONS = 5;
@@ -14,14 +14,14 @@ public class ConnectionPoolImpl extends ConnectionPool {
 		}
 	}
 	
-	/** ´ÓÁ¬½Ó³ØÖĞÈ¡³öÁ¬½Ó */
+	/** ä»è¿æ¥æ± ä¸­å–å‡ºè¿æ¥ */
 	public Connection getConnection() {
 		index ++;
 		if(index >= connections.size())index=0;
 		return connections.get(index);
 	}
 
-	/** °ÑÁ¬½ÓÊÍ·Å */
+	/** æŠŠè¿æ¥é‡Šæ”¾ */
 	public void releaseConnection(Connection con) {
 		con = null;
 	}

@@ -14,16 +14,16 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 /**<pre>
- * ¸ÃÀàµÄ³ÉÒòÊÇ£º
- * ĞèÒªÔÚcookieÖĞ´æ·Å¶ÔÏóËùÓÃ
- * ¿ÉÒÔ½«ĞòÁĞ»¯¶ÔÏóÍêÕûµÄ×ª»¯Îª×Ö·û´®
- * ²¢´Ó×ª»¯ºóµÄ×Ö·û´®ÖĞ¶ÁÈ¡¶ÔÏó
- * ×¢£ºĞèÒªrt.jar°ü
+ * è¯¥ç±»çš„æˆå› æ˜¯ï¼š
+ * éœ€è¦åœ¨cookieä¸­å­˜æ”¾å¯¹è±¡æ‰€ç”¨
+ * å¯ä»¥å°†åºåˆ—åŒ–å¯¹è±¡å®Œæ•´çš„è½¬åŒ–ä¸ºå­—ç¬¦ä¸²
+ * å¹¶ä»è½¬åŒ–åçš„å­—ç¬¦ä¸²ä¸­è¯»å–å¯¹è±¡
+ * æ³¨ï¼šéœ€è¦rt.jaråŒ…
  * </pre>
  * */
 public class EncodeObjectToString {
 
-	/**½«ĞòÁĞ»¯¶ÔÏó×ª»¯Îª×Ö·û´®*/
+	/**å°†åºåˆ—åŒ–å¯¹è±¡è½¬åŒ–ä¸ºå­—ç¬¦ä¸²*/
 	public static String EncodeToString(Serializable obj,String unicode){
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try {
@@ -40,7 +40,7 @@ public class EncodeObjectToString {
 		}
 	}
 	
-	/**½«×Ö·û´®»¹Ô­Îª¶ÔÏó*/
+	/**å°†å­—ç¬¦ä¸²è¿˜åŸä¸ºå¯¹è±¡*/
 	public static Object DecodeToObject(String str,String unicode){
 		try {
 			String baseStr = URLDecoder.decode(str,unicode);
@@ -50,7 +50,7 @@ public class EncodeObjectToString {
 			ObjectInputStream ois = new ObjectInputStream(bais);
 			return ois.readObject();
 		} catch (UnsupportedEncodingException e) {
-			System.out.println("×ªÂëÀàĞÍ²»Ö§³Ö£¡"+e);
+			System.out.println("è½¬ç ç±»å‹ä¸æ”¯æŒï¼"+e);
 			return null;
 		} catch (IOException e) {
 			e.printStackTrace();

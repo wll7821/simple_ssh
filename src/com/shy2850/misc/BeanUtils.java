@@ -8,16 +8,16 @@ import com.createJavaFile.Main.DBManager;
 import com.createJavaFile.myutil.Util;
 
 /**
- * °üº¬¿ÉÄÜÓÃµ½µÄjavaBeanÏà¹Ø¹¤¾ß
+ * åŒ…å«å¯èƒ½ç”¨åˆ°çš„javaBeanç›¸å…³å·¥å…·
  */
 
 public class BeanUtils {
 	/**
-	 * ÊµÏÖ´ÓÒ»¸ö¶ÔÏóÖĞ»ñÈ¡ÓĞĞ§Êı¾İcopyµ½Ö¸¶¨¶ÔÏóµÄÏàÓ¦ÊôĞÔ</br>
-	 * (ÒªÇó£ºÔ´¶ÔÏóµÄcopy×Ö¶ÎĞèÒªget·½·¨£»Ä¿±ê¶ÔÏóĞèÒªset·½·¨)
+	 * å®ç°ä»ä¸€ä¸ªå¯¹è±¡ä¸­è·å–æœ‰æ•ˆæ•°æ®copyåˆ°æŒ‡å®šå¯¹è±¡çš„ç›¸åº”å±æ€§</br>
+	 * (è¦æ±‚ï¼šæºå¯¹è±¡çš„copyå­—æ®µéœ€è¦getæ–¹æ³•ï¼›ç›®æ ‡å¯¹è±¡éœ€è¦setæ–¹æ³•)
 	 * 
-	 * @param target  	Ä¿±ê¶ÔÏó
-	 * @param root		´ıcopyµÄÔ´¶ÔÏó
+	 * @param target  	ç›®æ ‡å¯¹è±¡
+	 * @param root		å¾…copyçš„æºå¯¹è±¡
 	 */
 	public static void copy(Object target,Object root){
 		Class<?> targetClass = target.getClass();

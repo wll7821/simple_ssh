@@ -18,28 +18,28 @@ import com.shy2850.misc.LogOutputStream;
 
 /**
  * <pre>
- * SQLÓï¾äµÄÖ´ĞĞ¿ØÖÆÀà
- * Ö§³ÖÔ­ÉúÌ¬±ê×¼SQLÓï¾ä
- * ÔÚÏµÍ³ÖĞÒ»°ã¿ÉÍ¨¹ıSuperClassDao(»òÕßÆä×ÓÀà)À´»ñµÃ
+ * SQLè¯­å¥çš„æ‰§è¡Œæ§åˆ¶ç±»
+ * æ”¯æŒåŸç”Ÿæ€æ ‡å‡†SQLè¯­å¥
+ * åœ¨ç³»ç»Ÿä¸­ä¸€èˆ¬å¯é€šè¿‡SuperClassDao(æˆ–è€…å…¶å­ç±»)æ¥è·å¾—
  * 
  * <pre>
  * */
 public class DBManager {
 
-	/** JDBCÁ¬½Ó */
+	/** JDBCè¿æ¥ */
 	private Connection conn;
-	/** Ä¬ÈÏµÄÊÇ×Ô¶¯Ìá½» */
+	/** é»˜è®¤çš„æ˜¯è‡ªåŠ¨æäº¤ */
 	private boolean isHandleCommit;
-	/** SQLÓï¾äÖ´ĞĞµÄÓ°ÏìĞĞÊı */
+	/** SQLè¯­å¥æ‰§è¡Œçš„å½±å“è¡Œæ•° */
 	private int rows;
 
-	/** ´ÓConnectionPoolÖĞ»ñµÃÁ¬½Ó³Ø */
+	/** ä»ConnectionPoolä¸­è·å¾—è¿æ¥æ±  */
 	private static ConnectionPool connectionPool = ConnectionPool.connectionPoolImpl;
 
-	/** ´òÓ¡ÈÕÖ¾µÄPrintStream out */
+	/** æ‰“å°æ—¥å¿—çš„PrintStream out */
 	private static PrintStream out = getLogPrinter();
 
-	/** ÉèÖÃ´òÓ¡SQLÓï¾äµÄPrintStream out */
+	/** è®¾ç½®æ‰“å°SQLè¯­å¥çš„PrintStream out */
 	public static void setOut(PrintStream out) {
 		DBManager.out = out;
 	}
@@ -95,21 +95,21 @@ public class DBManager {
 				conn = con;
 			}
 		} catch (SQLException e) {
-			out.println("Á¬½Ó»ñÈ¡Ê§°Ü£¡" + e);
+			out.println("è¿æ¥è·å–å¤±è´¥ï¼" + e);
 		}
 		return con;
 	}
 
 	/**
-	 * Ö´ĞĞ¸üĞÂÓï¾ä
+	 * æ‰§è¡Œæ›´æ–°è¯­å¥
 	 * 
 	 * @param sql
-	 *            Ô­ÉúÌ¬SQL
+	 *            åŸç”Ÿæ€SQL
 	 * @param printSQL
-	 *            ÊÇ·ñ´òÓ¡SQLÓï¾ä
+	 *            æ˜¯å¦æ‰“å°SQLè¯­å¥
 	 * @param objects
-	 *            Õ¼Î»²ÎÊıÊı×é
-	 * @return SQLÓï¾äÖ´ĞĞµÄÓ°ÏìĞĞÊı
+	 *            å ä½å‚æ•°æ•°ç»„
+	 * @return SQLè¯­å¥æ‰§è¡Œçš„å½±å“è¡Œæ•°
 	 * @throws SQLException
 	 */
 	public int executeUpdate(String sql, boolean printSQL, Object... objects)
@@ -119,7 +119,7 @@ public class DBManager {
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		for (int i = 0; i < objects.length; i++) {
 			pstmt.setObject((i + 1), objects[i]);
-		}// ¸ø sql Óï¾äµÄ²ÎÊı¸³Öµ
+		}// ç»™ sql è¯­å¥çš„å‚æ•°èµ‹å€¼
 
 		if (printSQL)printSQL(pstmt);
 		
@@ -137,15 +137,15 @@ public class DBManager {
 	}// executeUpdate()
 
 	/**
-	 * Ö´ĞĞ²éÑ¯Óï¾ä£¬ÖĞ¼äÉèÖÃcon.setReadOnly(true)ÒÔÌá¸ßĞ§ÂÊ£¬Àë¿ªÊ±ÖØÖÃ
+	 * æ‰§è¡ŒæŸ¥è¯¢è¯­å¥ï¼Œä¸­é—´è®¾ç½®con.setReadOnly(true)ä»¥æé«˜æ•ˆç‡ï¼Œç¦»å¼€æ—¶é‡ç½®
 	 * 
 	 * @param sql
-	 *            Ô­ÉúÌ¬SQL
+	 *            åŸç”Ÿæ€SQL
 	 * @param printSQL
-	 *            ÊÇ·ñ´òÓ¡SQLÓï¾ä
+	 *            æ˜¯å¦æ‰“å°SQLè¯­å¥
 	 * @param obj
-	 *            Õ¼Î»²ÎÊıÊı×é
-	 * @return Ö´ĞĞSQLÓï¾äµÄ½á¹û¼¯
+	 *            å ä½å‚æ•°æ•°ç»„
+	 * @return æ‰§è¡ŒSQLè¯­å¥çš„ç»“æœé›†
 	 * @throws SQLException
 	 */
 	public List<Object> executeQuery(String sql, boolean printSQL,
@@ -161,7 +161,7 @@ public class DBManager {
 			if (null != obj)
 				for (int i = 0; i < obj.length; i++) {
 					pstmt.setObject((i + 1), obj[i]);
-				}// ¸ø sql Óï¾äµÄ²ÎÊı¸³Öµ
+				}// ç»™ sql è¯­å¥çš„å‚æ•°èµ‹å€¼
 			
 			if (printSQL)printSQL(pstmt);
 			
@@ -191,7 +191,7 @@ public class DBManager {
 		return list;
 	}// executeQuery()
 
-	/** ²éÑ¯Ìá½» */
+	/** æŸ¥è¯¢æäº¤ */
 	public int commit() {
 		try {
 			getConn().commit();
@@ -199,7 +199,7 @@ public class DBManager {
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				throw new RuntimeException("»Ø¹öÒì³££¡", e1);
+				throw new RuntimeException("å›æ»šå¼‚å¸¸ï¼", e1);
 			}
 			return 0;
 		} finally {
@@ -210,7 +210,7 @@ public class DBManager {
 
 	}
 	
-	/**´òÓ¡Ô¤´¦ÀíµÄSQLÓï¾ä*/
+	/**æ‰“å°é¢„å¤„ç†çš„SQLè¯­å¥*/
 	private void printSQL(PreparedStatement pstmt){
 		String sqlString = pstmt.toString();
 		int index =sqlString.lastIndexOf("PreparedStatement");

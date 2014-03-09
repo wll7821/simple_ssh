@@ -3,7 +3,7 @@ package com.shy2850.filter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**实体BEAN中DATE类型字段的toString方式,*/
+/**瀹炰綋BEAN涓璂ATE绫诲瀷瀛楁鐨則oString鏂瑰紡,*/
 public class DateFormat {
 	public static final String DATEFOMART="yyyy-MM-dd hh:mm:ss";
 	

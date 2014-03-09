@@ -19,7 +19,7 @@ import com.createJavaFile.myutil.PropertyReader;
 import com.createJavaFile.myutil.Util;
 import com.shy2850.convertor.ConvertorUtils;
 
-/**±¸·İÊı¾İ¿â±íÊ¹ÓÃµÄÀà*/
+/**å¤‡ä»½æ•°æ®åº“è¡¨ä½¿ç”¨çš„ç±»*/
 public class Backup {
 	private static final String dataProp = Util.contextPath+fileUrl();
 	
@@ -46,7 +46,7 @@ public class Backup {
 		return null==s ? "conf/PersistObj.properties" : s; 
 	}
 	
-	/**»ñÈ¡Éú³ÉÊı¾İ¿â±íµÄT-SQLÓï¾ä*/
+	/**è·å–ç”Ÿæˆæ•°æ®åº“è¡¨çš„T-SQLè¯­å¥*/
 	public static String getSql() {
 		if(null == sql){
 			StringBuilder sb = new StringBuilder();
@@ -78,16 +78,16 @@ public class Backup {
 	}
 	
 	/**
-	 * ³ÌĞòÌí¼ÓÊı¾İ¿â±í³Ö¾Ã»¯¶ÔÏóµÄ±¸·İ
-	 * @param prs 	³Ö¾Ã»¯¶ÔÏó	¹Ø¼ü×ÖÎª£º³Ö¾Ã»¯ÀàÃû+Ö÷¼üÖµ
+	 * ç¨‹åºæ·»åŠ æ•°æ®åº“è¡¨æŒä¹…åŒ–å¯¹è±¡çš„å¤‡ä»½
+	 * @param prs 	æŒä¹…åŒ–å¯¹è±¡	å…³é”®å­—ä¸ºï¼šæŒä¹…åŒ–ç±»å+ä¸»é”®å€¼
 	 */
 	public static void backupPo(ParseResultSetable prs){
 		backupPo(prs.getClass().getSimpleName()+prs.get(prs.PrimaryKey()), prs);
 	}
 	/**
-	 * ³ÌĞòÌí¼ÓÊı¾İ¿â±í³Ö¾Ã»¯¶ÔÏóµÄ±¸·İ
-	 * @param key	¹Ø¼ü×Ö
-	 * @param prs 	³Ö¾Ã»¯¶ÔÏó
+	 * ç¨‹åºæ·»åŠ æ•°æ®åº“è¡¨æŒä¹…åŒ–å¯¹è±¡çš„å¤‡ä»½
+	 * @param key	å…³é”®å­—
+	 * @param prs 	æŒä¹…åŒ–å¯¹è±¡
 	 */
 	public static void backupPo(String key,ParseResultSetable prs){
 		propPOs.put(key, prs.toString());
@@ -101,16 +101,16 @@ public class Backup {
 	}
 	
 	
-	/**Éú³ÉËùÓĞ¼òµ¥Êı¾İ¿â±í*/
+	/**ç”Ÿæˆæ‰€æœ‰ç®€å•æ•°æ®åº“è¡¨*/
 	public static void rebuildTables() throws SQLException{
 		String[] strings = getSql().split(";\n");
 		for (int i = 0; i < strings.length; i++) {
 			new SuperClassDao().getDbmanager().executeUpdate(strings[i],SuperClassDao.show_sql);
 		}
-		System.out.println("¹²»Ö¸´" + strings.length + "ÕÅÊı¾İ¿â±í");
+		System.out.println("å…±æ¢å¤" + strings.length + "å¼ æ•°æ®åº“è¡¨");
 	}
 	
-	/**°Ñ¶ÔÏóµÄtoString·µ»Ø³É¶ÔÏó*/
+	/**æŠŠå¯¹è±¡çš„toStringè¿”å›æˆå¯¹è±¡*/
 	public static Object reBuildBeanFromToString(String s){
 		String clazzString = s.substring(0, s.indexOf(" ["));
 		String[] valueStrings = s.substring(s.indexOf('[')+1, s.lastIndexOf(']')).split(",");
@@ -137,13 +137,13 @@ public class Backup {
 		try {
 			setMethod.invoke(obj, ConvertorUtils.parseString(field.getType(), value));
 		} catch (Exception e) {
-			throw new RuntimeException("Ã»ÓĞ" + field.getType() + "µÄ×ª»»Æ÷£¡");
+			throw new RuntimeException("æ²¡æœ‰" + field.getType() + "çš„è½¬æ¢å™¨ï¼");
 		}
 		}
 		return (ParseResultSetable) obj;
 	}
 	
-	/**°ÑjavaÀàÖĞµÄ×Ö¶ÎÊôĞÔ¾¡Á¿Æ¥Åäµ½T-SQLÖĞ*/
+	/**æŠŠjavaç±»ä¸­çš„å­—æ®µå±æ€§å°½é‡åŒ¹é…åˆ°T-SQLä¸­*/
 	private static String convertType(String javaType){
 		if("Integer".equals(javaType) || "Boolean".equals(javaType) || "Long".equals(javaType))return "int";
 		if("Double".equals(javaType) || "Float".equals(javaType))return "float";
@@ -152,7 +152,7 @@ public class Backup {
 		else return "varchar(32)";
 	}
 	
-	/**½«±¸·İÊı¾İÖĞµÄËùÓĞÅäÖÃ¶ÔÏó»¹Ô­µ½Êı¾İ¿âÖĞ*/
+	/**å°†å¤‡ä»½æ•°æ®ä¸­çš„æ‰€æœ‰é…ç½®å¯¹è±¡è¿˜åŸåˆ°æ•°æ®åº“ä¸­*/
 	public static void rebuildPOs(){
 		for (Entry<Object, Object> entry : propPOs.entrySet()) {
 			try {
@@ -162,7 +162,7 @@ public class Backup {
 		}
 	}
 	
-	/**Í¨¹ı±êÊ¶»ñÈ¡±¸·İÊı¾İÖĞµÄÒÑÅäÖÃ¶ÔÏó*/
+	/**é€šè¿‡æ ‡è¯†è·å–å¤‡ä»½æ•°æ®ä¸­çš„å·²é…ç½®å¯¹è±¡*/
 	public static ParseResultSetable getPersistObj(String key){
 		return (ParseResultSetable) reBuildBeanFromToString(propPOs.getProperty(key));
 	}
@@ -179,7 +179,7 @@ public class Backup {
 				}
 			}
 		}
-		System.out.println(num+"ÌõÊı¾İÒÑ¾­±¸·İÍê³É");
+		System.out.println(num+"æ¡æ•°æ®å·²ç»å¤‡ä»½å®Œæˆ");
 	}
 	
 }

@@ -4,12 +4,12 @@ import java.sql.SQLException;
 
 import com.createJavaFile.Main.ConnectionImpl;
 
-/**Í¨¹ı¼Ì³Ğcom.createJavaFile.Main.ConnectionImplÊµÏÖ¹Ø±ÕÒÑ¾­½¨Á¢µÄÁ¬½Ó*/
+/**é€šè¿‡ç»§æ‰¿com.createJavaFile.Main.ConnectionImplå®ç°å…³é—­å·²ç»å»ºç«‹çš„è¿æ¥*/
 class ConnectionClosed extends ConnectionImpl {
 
 	private static final long serialVersionUID = -4856393312002742870L;
 
-	/**¹Ø±ÕÒÑ¾­½¨Á¢µÄÁ¬½Ó*/
+	/**å…³é—­å·²ç»å»ºç«‹çš„è¿æ¥*/
 	public ConnectionClosed(ConnectionImpl conn) throws SQLException{
 		super(conn);
 		this.conn.close();

@@ -1,31 +1,31 @@
 package com.shy2850.action;
 
-/**½«Ò»¸ö×Ö·û´®ÇëÇó°ü×°³É´øÌø×ª·½Ê½µÄÀàĞÍ¶ÔÏó
+/**å°†ä¸€ä¸ªå­—ç¬¦ä¸²è¯·æ±‚åŒ…è£…æˆå¸¦è·³è½¬æ–¹å¼çš„ç±»å‹å¯¹è±¡
  * <br>
- * ÅäÖÃÎÄ¼şÖĞname+".isRedirect" = true;±íÊ¾Ìø×ª·½Ê½ÎªÖØ¶¨Ïò
+ * é…ç½®æ–‡ä»¶ä¸­name+".isRedirect" = true;è¡¨ç¤ºè·³è½¬æ–¹å¼ä¸ºé‡å®šå‘
  * </br>
  * */
 public class ActionForward {
 	
 	/**<pre>
-	 * ÇëÇóÀàĞÍ£º
-	 * true ÖØ¶¨Ïò
-	 * false ×ª·¢
+	 * è¯·æ±‚ç±»å‹ï¼š
+	 * true é‡å®šå‘
+	 * false è½¬å‘
 	 * </pre>
 	 * */
-	private boolean redirect = false;	//true Îª ĞÂÇëÇó(ÖØ¶¨Ïò) false Îª ×ª·¢
-	/**Ìø×ªµÄURL*/
-	private String url;				    //Ìø×ªµÄurl
+	private boolean redirect = false;	//true ä¸º æ–°è¯·æ±‚(é‡å®šå‘) false ä¸º è½¬å‘
+	/**è·³è½¬çš„URL*/
+	private String url;				    //è·³è½¬çš„url
 	
 	/**
-	 * @param url 	Ìø×ªµÄURL
+	 * @param url 	è·³è½¬çš„URL
 	 */
 	public ActionForward(String url) {
 		this(url, false);
 	}
 	/**
-	 * @param redirect 	ÇëÇóÀàĞÍ£º true ÖØ¶¨Ïò; false ×ª·¢
-	 * @param url		Ìø×ªµÄURL
+	 * @param redirect 	è¯·æ±‚ç±»å‹ï¼š true é‡å®šå‘; false è½¬å‘
+	 * @param url		è·³è½¬çš„URL
 	 */
 	public ActionForward(String url,boolean redirect) {
 		this.redirect = redirect;

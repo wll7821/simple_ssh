@@ -8,15 +8,15 @@ import java.util.List;
 
 import com.createJavaFile.Main.DBManager;
 
-/**ÏµÍ³×ª»»Æ÷DateConvertor*/
+/**ç³»ç»Ÿè½¬æ¢å™¨DateConvertor*/
 class DateConvertor extends Convertor {
 	
-	/**ÏµÍ³ÖĞÒÑ¾­Ìá¹©µÄDate×Ö·û´®×ª»»¸ñÊ½ */
+	/**ç³»ç»Ÿä¸­å·²ç»æä¾›çš„Dateå­—ç¬¦ä¸²è½¬æ¢æ ¼å¼ */
 	public static final String[] DATEFORMATs = {
 		"yyyy-MM-dd hh:mm:ss",
 		"yyyy-MM-dd",
-		"yyyyÄêMMÔÂddÈÕ hhÊ±mm·ÖssÃë",
-		"yyyyÄêMMÔÂddÈÕ",
+		"yyyyå¹´MMæœˆddæ—¥ hhæ—¶mmåˆ†ssç§’",
+		"yyyyå¹´MMæœˆddæ—¥",
 		"MM/dd/yyyy"
 		};
 	
@@ -28,9 +28,9 @@ class DateConvertor extends Convertor {
 	}
 	
 	/**
-	 * °´Ö¸¶¨Î»ÖÃÌí¼Óformat×Ö·û´®
-	 * @param index		Ìí¼ÓformatµÄÎ»ÖÃ£¬nullÊ±Ìí¼Óµ½½áÎ²
-	 * @param strings	ÒªÌí¼ÓµÄ×Ö·û´®
+	 * æŒ‰æŒ‡å®šä½ç½®æ·»åŠ formatå­—ç¬¦ä¸²
+	 * @param index		æ·»åŠ formatçš„ä½ç½®ï¼Œnullæ—¶æ·»åŠ åˆ°ç»“å°¾
+	 * @param strings	è¦æ·»åŠ çš„å­—ç¬¦ä¸²
 	 */
 	static final void addDateformats(Integer index, String...strings){
 		for (int i = 0; i < strings.length; i++) {
@@ -52,7 +52,7 @@ class DateConvertor extends Convertor {
 			date = parse(formats.get(i), convertorString);
 			if(null != date)return date;
 		}
-		DBManager.getOut().println("String:"+convertorString+" ÎŞ·¨×ª»»µ½java.util.Date");
+		DBManager.getOut().println("String:"+convertorString+" æ— æ³•è½¬æ¢åˆ°java.util.Date");
 		return null;
 	}
 
@@ -61,9 +61,9 @@ class DateConvertor extends Convertor {
 	}
 	
 	/**
-	 * °´ÕÕÖ¸¶¨×Ö·û´®Ç¿ÖÆ×ª»»stringµ½java.util.Date
-	 * @param format			Ö¸¶¨×Ö·û´®
-	 * @param convertorString	ÒªÇ¿ÖÆ×ª»»µÄstring¶ÔÏó
+	 * æŒ‰ç…§æŒ‡å®šå­—ç¬¦ä¸²å¼ºåˆ¶è½¬æ¢stringåˆ°java.util.Date
+	 * @param format			æŒ‡å®šå­—ç¬¦ä¸²
+	 * @param convertorString	è¦å¼ºåˆ¶è½¬æ¢çš„stringå¯¹è±¡
 	 * @return
 	 */
 	private Date parse(String format,String convertorString){

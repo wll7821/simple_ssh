@@ -68,7 +68,7 @@ public class FConnectionImpl implements Connection{
 		
 	}
 	public void setAutoCommit(boolean autoCommit) throws SQLException {
-		throw new SQLException("´Ë·½·¨²»ÊÊÓÃÓÚÎÄ¼şÏµÍ³");
+		throw new SQLException("æ­¤æ–¹æ³•ä¸é€‚ç”¨äºæ–‡ä»¶ç³»ç»Ÿ");
 	}
 	public void setBeingUsed(boolean beingUsed) {
 		this.beingUsed = beingUsed;
@@ -78,7 +78,7 @@ public class FConnectionImpl implements Connection{
 		
 	}
 	public Savepoint setSavepoint(String name) throws SQLException {
-		throw new SQLException("´Ë·½·¨²»ÊÊÓÃÓÚÎÄ¼şÏµÍ³");
+		throw new SQLException("æ­¤æ–¹æ³•ä¸é€‚ç”¨äºæ–‡ä»¶ç³»ç»Ÿ");
 	}
 	public CallableStatement prepareCall(String sql) throws SQLException {
 		// TODO Auto-generated method stub

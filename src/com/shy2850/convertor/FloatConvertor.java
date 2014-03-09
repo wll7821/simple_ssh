@@ -2,7 +2,7 @@ package com.shy2850.convertor;
 
 import com.createJavaFile.Main.DBManager;
 
-/**系统转换器FloatConvertor*/
+/**绯荤粺杞崲鍣‵loatConvertor*/
 class FloatConvertor extends Convertor{
 
 	public FloatConvertor() {
@@ -13,7 +13,7 @@ class FloatConvertor extends Convertor{
 		try {
 			return Float.parseFloat(convertorString);
 		} catch (NumberFormatException e) {
-			DBManager.getOut().println("String:"+convertorString+" 无法转换到java.lang.Float");
+			DBManager.getOut().println("String:"+convertorString+" 鏃犳硶杞崲鍒癹ava.lang.Float");
 			return null;
 		}
 	}

@@ -13,14 +13,14 @@ import com.myInterface.Statement;
 import com.shy2850.filter.ApplicationContext;
 
 /**</pre>
- * Í¨¹ıÄ£¿é»¯µÄÆ´½Ó×Ö·û´®
- * ´´½¨javaÎÄ¼ş
- * ÊµÏÖÊı¾İ¿â±íÓëjavaÊµÌå¶ÔÏóµÄÓ³Éä¹ØÏµ
+ * é€šè¿‡æ¨¡å—åŒ–çš„æ‹¼æ¥å­—ç¬¦ä¸²
+ * åˆ›å»ºjavaæ–‡ä»¶
+ * å®ç°æ•°æ®åº“è¡¨ä¸javaå®ä½“å¯¹è±¡çš„æ˜ å°„å…³ç³»
  * </pre>
  * */
 public class Model{
 	
-	/**±íÖĞËùÓĞÁĞÏîµÄ°ü×°ÀàMemberÀàĞÍÊµÀıËù×é³ÉµÄÁ´±í*/
+	/**è¡¨ä¸­æ‰€æœ‰åˆ—é¡¹çš„åŒ…è£…ç±»Memberç±»å‹å®ä¾‹æ‰€ç»„æˆçš„é“¾è¡¨*/
 	private LinkedList<Member> members = new LinkedList<Member>();
 	
 	public LinkedList<Member> getMembers() {
@@ -28,19 +28,19 @@ public class Model{
 	}
 	
 	
-	/**¶¨Òå±íÖĞ×Ö¶ÎÊÇ·ñ»¹ÓĞDateÀàĞÍµÄÊı¾İ*/
+	/**å®šä¹‰è¡¨ä¸­å­—æ®µæ˜¯å¦è¿˜æœ‰Dateç±»å‹çš„æ•°æ®*/
 	boolean hasDate;
-	/**¶¨Òå±íÖĞ×Ö¶ÎÊÇ·ñ»¹ÓĞBlobÀàĞÍµÄÊı¾İ*/
+	/**å®šä¹‰è¡¨ä¸­å­—æ®µæ˜¯å¦è¿˜æœ‰Blobç±»å‹çš„æ•°æ®*/
 	boolean hasBlob;
-	/**Êı¾İ¿â±íÃû*/
+	/**æ•°æ®åº“è¡¨å*/
 	String table;
-	/**Êı¾İ¿â±íÃû´óĞ´*/
+	/**æ•°æ®åº“è¡¨åå¤§å†™*/
 	String Table;
-	/**Éú³ÉµÄjavaÎÄ¼şµÄ±£´æµØÖ·*/
+	/**ç”Ÿæˆçš„javaæ–‡ä»¶çš„ä¿å­˜åœ°å€*/
 	String url;
-	/**Ö÷¼üËùÔÚµÄË÷ÒıÏÂ±ê*/
+	/**ä¸»é”®æ‰€åœ¨çš„ç´¢å¼•ä¸‹æ ‡*/
 	int pkIndex = -1;
-	/**Ö÷¼ü×Ö¶ÎµÄÃû³Æ*/
+	/**ä¸»é”®å­—æ®µçš„åç§°*/
 	private String pk;
 	public void setPk(String pk) {
 		this.pk = pk;
@@ -50,8 +50,8 @@ public class Model{
 	}
 	
 	/**
-	 * @param table Êı¾İ¿â±íÃû
-	 * @param url   javaÎÄ¼şµÄ±£´æµØÖ·:Ö»ÔÊĞíÔÚsrcÏÂ,Èç(com.java.util)
+	 * @param table æ•°æ®åº“è¡¨å
+	 * @param url   javaæ–‡ä»¶çš„ä¿å­˜åœ°å€:åªå…è®¸åœ¨srcä¸‹,å¦‚(com.java.util)
 	 */
 	public Model(String table, String url, String pk) {
 		this.table = table;
@@ -77,8 +77,8 @@ public class Model{
 		}	
 	}
 	
-	/**Ñ­»·ÉùÃ÷private³ÉÔ±*/
-	private String def(){   //ÉùÃ÷private³ÉÔ±
+	/**å¾ªç¯å£°æ˜privateæˆå‘˜*/
+	private String def(){   //å£°æ˜privateæˆå‘˜
 		StringBuffer sb = new StringBuffer("");
 		for (int i = 0; i < members.size(); i++) {
 			sb.append(members.get(i).creatMem()+";");
@@ -86,8 +86,8 @@ public class Model{
 		return sb.toString();
 	}
 	
-	/**Ñ­»·Éú³É¸÷¸ö³ÉÔ±µÄget-set·½·¨*/
-	private String getSet(){  //Éú³Éget-set·½·¨
+	/**å¾ªç¯ç”Ÿæˆå„ä¸ªæˆå‘˜çš„get-setæ–¹æ³•*/
+	private String getSet(){  //ç”Ÿæˆget-setæ–¹æ³•
 		StringBuffer sb = new StringBuffer("");
 		for (int i = 0; i < members.size(); i++) {
 			sb.append(members.get(i).creatSetFun());
@@ -96,8 +96,8 @@ public class Model{
 		return sb.toString();
 	}
 	/**<pre>
-	 * Éú³É¹¹Ôì·½·¨£º
-	 * °üÀ¨Ò»¸ö¿ÕµÄ¹¹Ôì·½·¨ÒÔ¼°È«²ÎÊıµÄ¹¹Ôì·½·¨
+	 * ç”Ÿæˆæ„é€ æ–¹æ³•ï¼š
+	 * åŒ…æ‹¬ä¸€ä¸ªç©ºçš„æ„é€ æ–¹æ³•ä»¥åŠå…¨å‚æ•°çš„æ„é€ æ–¹æ³•
 	 * </pre>
 	 * */
 	private String conStructor(){
@@ -114,15 +114,15 @@ public class Model{
 		return sb.toString();
 	}
 	
-	/**ÖØĞ´µÄequals·½·¨*/
+	/**é‡å†™çš„equalsæ–¹æ³•*/
 	private String Equals(Member member){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\t@Override\n\tpublic boolean equals(Object o) {\n\t");
 		sb.append("\treturn (o instanceof "+Table+")&&(("+Table+")o)."+member.get()+"=="+member.get()+";\n\t}");
 		return sb.toString();
 	}
-	/**ÖØĞ´µÄtoString·½·¨*/
-	private String ToString() {  //Ìí¼ÓtoString()·½·¨
+	/**é‡å†™çš„toStringæ–¹æ³•*/
+	private String ToString() {  //æ·»åŠ toString()æ–¹æ³•
 		StringBuffer sb = new StringBuffer("\n\t@Override\n\tpublic String toString(){\n");
 		sb.append("\t\treturn \""+Util.upperFirst(table)+" [");
 		for (int i = 0; i < members.size(); i++) {
@@ -136,8 +136,8 @@ public class Model{
 		}
 		return sb.toString();
 	}
-	/**ÊµÏÖParseResultable½Ó¿Ú·½·¨parseOfµÄ×Ö·û´®Æ´½Ó*/
-	private String ParseOf(){ //ÊµÏÖParseResultable½Ó¿ÚµÄ×Ö·û´®Æ´½Ó
+	/**å®ç°ParseResultableæ¥å£æ–¹æ³•parseOfçš„å­—ç¬¦ä¸²æ‹¼æ¥*/
+	private String ParseOf(){ //å®ç°ParseResultableæ¥å£çš„å­—ç¬¦ä¸²æ‹¼æ¥
 		StringBuffer sb = new StringBuffer("\n\tpublic Object parseOf(ResultSet rs) throws SQLException{\n\t\tif(null==rs)return null;");
 		for (int i = 0; i < members.size(); i++) {
 		sb.append("\n\t\t"+members.get(i).getParseResultSet());
@@ -150,7 +150,7 @@ public class Model{
 		sb.append("\n\t\treturn "+table+";\n\t}");
 		return sb.toString();
 	}
-	/**´´½¨³ÉÔ±ÁĞ±í·½·¨*/
+	/**åˆ›å»ºæˆå‘˜åˆ—è¡¨æ–¹æ³•*/
 	private String MemberList(){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tpublic static final String[] memberList = {");
@@ -166,7 +166,7 @@ public class Model{
 	
 	
 	
-	/**´´½¨°´ĞòºÅ»ñµÃÊôĞÔÖµµÄ·½·¨*/
+	/**åˆ›å»ºæŒ‰åºå·è·å¾—å±æ€§å€¼çš„æ–¹æ³•*/
 	private String Get(){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tpublic Object get(int i){");
@@ -209,15 +209,15 @@ public class Model{
 		return allInfo.toString();
 	}
 	
-	/**½«Éú³ÉµÄ×Ö·û´®Ğ´ÈëÎÄ¼ş*/
+	/**å°†ç”Ÿæˆçš„å­—ç¬¦ä¸²å†™å…¥æ–‡ä»¶*/
 	public void saveModel(){
 		try {
 			Util.write(toString(),"src."+url,Table+".java");
-			System.out.println("ÊµÌåÀà:"+Table+".java ÒÑ¾­´æÈë "+url);
+			System.out.println("å®ä½“ç±»:"+Table+".java å·²ç»å­˜å…¥ "+url);
 			ApplicationContext.addProperties(table, url+"."+Table);
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("ÎÄ¼şĞ´ÈëÒì³££¡");
+			System.out.println("æ–‡ä»¶å†™å…¥å¼‚å¸¸ï¼");
 		}
 	}
 

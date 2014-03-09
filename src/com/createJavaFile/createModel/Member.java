@@ -3,26 +3,26 @@ package com.createJavaFile.createModel;
 import com.createJavaFile.myutil.Util;
 
 /**<pre>
- * ÓÃÓÚORM¿ò¼ÜÖĞÄæÏò¹¤³ÌµÄÁĞÏîÀà
- * ¼´£ºÊı¾İ¿â±íÖĞµÄÃ¿ÁĞÓÃ°ü×°¶ÔÏóµÄ±íÊ¾¡£
+ * ç”¨äºORMæ¡†æ¶ä¸­é€†å‘å·¥ç¨‹çš„åˆ—é¡¹ç±»
+ * å³ï¼šæ•°æ®åº“è¡¨ä¸­çš„æ¯åˆ—ç”¨åŒ…è£…å¯¹è±¡çš„è¡¨ç¤ºã€‚
  * </pre>
  * */
 class Member {
 	
-	/**±íÖĞµÄÁĞÃû*/
+	/**è¡¨ä¸­çš„åˆ—å*/
 	private String name;
-	/**±íÖĞµÄÁĞÃû(Ê××ÖÄ¸´óĞ´ºóµÄ)*/
+	/**è¡¨ä¸­çš„åˆ—å(é¦–å­—æ¯å¤§å†™åçš„)*/
 	private String Name;
-	/**¸ÃÁĞÔÚjavaÖĞµÄÊı¾İÀàĞÍ*/
+	/**è¯¥åˆ—åœ¨javaä¸­çš„æ•°æ®ç±»å‹*/
 	private String type;
-	/** ¸ÃÁĞÊÇ·ñ×Ô¶¯Ôö³¤*/
+	/** è¯¥åˆ—æ˜¯å¦è‡ªåŠ¨å¢é•¿*/
 	boolean isAutoIncrement;
 	
 	/**
-	 * @param name   ±íÖĞµÄÁĞÃû
-	 * @param type   ¸ÃÁĞÔÚjavaÖĞµÄÊı¾İÀàĞÍ
-	 * @param isAutoIncrement   ¸ÃÁĞÊÇ·ñ×Ô¶¯Ôö³¤
-	 * @param table  ¸ÃÁĞËùÊôµÄ±íÃû
+	 * @param name   è¡¨ä¸­çš„åˆ—å
+	 * @param type   è¯¥åˆ—åœ¨javaä¸­çš„æ•°æ®ç±»å‹
+	 * @param isAutoIncrement   è¯¥åˆ—æ˜¯å¦è‡ªåŠ¨å¢é•¿
+	 * @param table  è¯¥åˆ—æ‰€å±çš„è¡¨å
 	 */
 	public Member(String name, String type, boolean isAutoIncrement) {
 		super();
@@ -44,16 +44,16 @@ class Member {
 		this.type = type;
 	}
 	
-	/**´´½¨ĞÎÈç£ºprivate Type name;×Ö·û´®*/
+	/**åˆ›å»ºå½¢å¦‚ï¼šprivate Type name;å­—ç¬¦ä¸²*/
 	public String creatMem(){
 		return "\n\tprivate "+this.type+" "+this.name;
 	} 
 	/**</pre>
-	 * ´´½¨ĞÎÈç£º
+	 * åˆ›å»ºå½¢å¦‚ï¼š
 	 * public void setName(Type name){
 	 * 	this.name = name; 
 	 * }
-	 * ×Ö·û´®
+	 * å­—ç¬¦ä¸²
 	 * </pre>
 	 * */
 	public String creatSetFun(){ 
@@ -63,11 +63,11 @@ class Member {
 	}
 	
 	/**<pre>
-	 * ´´½¨ĞÎÈç£º
+	 * åˆ›å»ºå½¢å¦‚ï¼š
 	 * public Type getName(){
 	 * 	return name;
 	 * }
-	 * ×Ö·û´®
+	 * å­—ç¬¦ä¸²
 	 * </pre>
 	 * */
 	public String creatGetFun(){
@@ -76,12 +76,12 @@ class Member {
 			return "\n\tpublic "+type+" get"+Name+"(){\n\t\treturn "+name+";\n\t}";
 	}
 	
-	/**´´½¨ĞÎÈç£ºpsetName(name)×Ö·û´®*/
+	/**åˆ›å»ºå½¢å¦‚ï¼špsetName(name)å­—ç¬¦ä¸²*/
 	public String set(){
 		return "set"+Name+"("+name+")";
 	}
 	
-	/**´´½¨ĞÎÈç£ºgetName()×Ö·û´®*/
+	/**åˆ›å»ºå½¢å¦‚ï¼šgetName()å­—ç¬¦ä¸²*/
 	public String get(){
 		if("boolean".equals(type))return "is"+Name+"()";
 		else
@@ -89,9 +89,9 @@ class Member {
 	}
 	
 	/**<pre>
-	 * ´´½¨ĞÎÈç£º
+	 * åˆ›å»ºå½¢å¦‚ï¼š
 	 * Type name = rs.getType("name");
-	 * ×Ö·û´®
+	 * å­—ç¬¦ä¸²
 	 * </pre>
 	 * */
 	public String getParseResultSet(){
