@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 import com.createJavaFile.myutil.Util;
-import com.shy2850.filter.ApplicationContext;
+import com.wll7821.filter.ApplicationContext;
 
 /**<pre>
  * 通过模块化的拼接字符串
@@ -66,11 +66,15 @@ public class ModelDao {
 		sb.append("package "+url+";\n");
 		sb.append("\nimport java.sql.SQLException;\n");
 		sb.append("import java.util.ArrayList;\n");
-		sb.append("import java.util.Collections;\n");
+//		sb.append("import java.util.Collections;\n");
 		sb.append("import java.util.List;\n");
-		sb.append("\nimport com.createJavaFile.Main.SuperClassDao;\n");
+//		sb.append("\nimport com.createJavaFile.Main.SuperClassDao;\n");
+		sb.append("\nimport com.createJavaFile.Main.DBManager;\n");
 		sb.append("import com.createJavaFile.createModel.ParseResultSetable;\n");
-		sb.append("import com.createJavaFile.createModel.SqlColumn;\nimport "+modelUrl+"."+Table+";\n");
+		sb.append("import com.createJavaFile.createModel.SqlColumn;\n");
+		sb.append("import com.createJavaFile.myutil.PropertyReader;\n");
+		sb.append("import com.createJavaFile.myutil.Util;\n");
+		sb.append("import "+modelUrl+"."+Table+";\n");
 		return sb.toString();
 	}  //包与引用类的导入 
 	
@@ -188,8 +192,8 @@ public class ModelDao {
 		sb.append("\n\t  * @throws SQLException 可能抛出SQL异常");
 		sb.append("\n\t  */");
 		sb.append("\n\tpublic List<"+Table+"> find"+Table+"s(SqlColumn...sqlColumns)throws SQLException{");
-		sb.append("\n\t\t"+table+"List = find"+Table+"(sqlColumns);");
-		sb.append("\n\t\treturn "+table+"List;\n\t}//find"+Table+"s()\n");
+		sb.append("\n\t\treturn find"+Table+"(sqlColumns);");
+		sb.append("\n\t}\n");
 		return sb.toString();
 	}
     
@@ -202,8 +206,8 @@ public class ModelDao {
 		sb.append("\n\t  * @throws SQLException 可能抛出SQL异常");
 		sb.append("\n\t  */");
 		sb.append("\n\tpublic List<"+Table+"> get"+Table+"s(SqlColumn...sqlColumns)throws SQLException{");
-		sb.append("\n\t\t"+table+"List = get"+Table+"(sqlColumns);");
-		sb.append("\n\t\treturn "+table+"List;\n\t}//get"+Table+"s()\n");
+		sb.append("\n\t\treturn get"+Table+"(sqlColumns);");
+		sb.append("\n\t}\n");
 		return sb.toString();
 	}
 	
@@ -219,18 +223,17 @@ public class ModelDao {
 	
 	String deleteByPK(Member m){
 		return "\n" +
-				"\tpublic void deleteByBK("+m.getType()+" "+m.getName()+") throws SQLException{" +
+				"\tpublic int deleteByPK("+m.getType()+" "+m.getName()+") throws SQLException{" +
 				"\n\t\tString sql = new String(\"delete from "+table+" where "+m.getName()+" = \" + "+m.getName()+");" +
-				"\n\t\tint n = dbmanager.executeUpdate(sql, show_sql);" +
-				"\n\t\tif(n>0)needUpdate = true;" +
+				"\n\t\treturn dbmanager.executeUpdate(sql, show_sql);" +
 				"\n\t}";
 	}
 	
 	/**保存实体模块的写入*/
 	String saveModel(){
 		StringBuffer sb = new StringBuffer();
-		sb.append("\n\tpublic void save("+Table+" "+table+") throws SQLException{\n\t");
-		sb.append("int n = dbmanager.executeUpdate(\"insert into "+table+" values(");
+		sb.append("\n\tpublic int save("+Table+" "+table+") throws SQLException{");
+		sb.append("\n\t\treturn dbmanager.executeUpdate(\"insert into "+table+" values(");
 		for (int i = 0; i < members.size(); i++) {
 			sb.append("?");
 			if(i!=members.size()-1)sb.append(",");
@@ -242,7 +245,6 @@ public class ModelDao {
 			if(i!=members.size()-1)sb.append(",");
 			else sb.append(");");
 		}
-		sb.append("\n\tif(n>0)needUpdate = true;");
 		sb.append("\n\t}//save()\n");
 		return sb.toString();
 	}
@@ -250,25 +252,25 @@ public class ModelDao {
 	/**删除实体模块的写入*/
 	String deleteModel(){
 		StringBuffer sb = new StringBuffer();
-		sb.append("\n\tpublic void delete(SqlColumn...sqlColumns)throws SQLException{");
+		sb.append("\n\tpublic int delete(SqlColumn...sqlColumns)throws SQLException{");
 		sb.append("\n\t\tStringBuffer sql = new StringBuffer(\"delete from "+table+" where 1=1 \");");
 		sb.append("\n\t\tfor (int i = 0; i < sqlColumns.length; i++) {");
 		sb.append("\n\t\t\tSqlColumn s = sqlColumns[i];");
 		sb.append("\n\t\t\tif(null!=s.getColumnValue()&&!\"\".equals(s.getColumnValue())){" +
 				"\n\t\t\t\tif(s.isExist())sql.append(\"and \"+s.getColumnName()+\" = '\"+s.getColumnValue()+\"' \");" +
 				"\n\t\t\t\telse sql.append(\"and \"+s.getColumnName()+\" != '\"+s.getColumnValue()+\"' \");");
-		sb.append("\n\t\t\t}\n\t\t}\n\t\tint n = dbmanager.executeUpdate(sql.toString()");
+		sb.append("\n\t\t\t}\n\t\t}\n\t\treturn dbmanager.executeUpdate(sql.toString()");
 		sb.append(", show_sql");
 		sb.append(");");
-		sb.append("\n\t\tif(n>0)needUpdate = true;\n\t}//delete()\n");
+		sb.append("\n\t}\n");
 		return sb.toString();
 	}
 	
 	/**更新实体模块的写入*/
 	String updateModel(Member m){
 		StringBuffer sb = new StringBuffer();
-		sb.append("\n\tpublic void update("+Table+" "+table+") throws SQLException{");
-		sb.append("\n\t\tint n = dbmanager.executeUpdate(\"update "+table+" set ");
+		sb.append("\n\tpublic int update("+Table+" "+table+") throws SQLException{");
+		sb.append("\n\t\treturn dbmanager.executeUpdate(\"update "+table+" set ");
 		for (int i = 0; i < members.size(); i++) {
 			if(m!=members.get(i)){
 				sb.append(members.get(i).getName()+"=?");
@@ -283,7 +285,6 @@ public class ModelDao {
 			}
 			if(i==members.size()-1)sb.append(table+"."+m.get()+");");
 		}
-		sb.append("\n\tif(n>0)needUpdate = true;");
 		sb.append("\n\t}//update()\n");
 		return sb.toString();
 	}
@@ -292,11 +293,13 @@ public class ModelDao {
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(include());
-		sb.append("\npublic class "+Table+"Dao extends SuperClassDao{\n");
-		sb.append(tableList());
-		sb.append(reverse());
-		sb.append(getCount());
-		sb.append(pageOf());
+		sb.append("\npublic class "+Table+"Dao {\n");
+		sb.append("\n\tprivate DBManager dbmanager = new DBManager();"+
+				"\n\tprivate Boolean show_sql = \"true\".equalsIgnoreCase(PropertyReader.get(Util.SHOW_SQL));\n");
+//		sb.append(tableList());
+//		sb.append(reverse());
+//		sb.append(getCount());
+//		sb.append(pageOf());
 		sb.append(privateFind());
 		sb.append(publicFind());
 		sb.append(privateGet());

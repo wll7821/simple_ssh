@@ -1,16 +1,16 @@
 package com.createJavaFile.createModel;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 
-import com.createJavaFile.connectionSource.ConnectionPool;
+import com.createJavaFile.connectionSource.ConnectionProvider;
 import com.createJavaFile.myutil.Util;
-import com.myInterface.Connection;
-import com.myInterface.ResultSet;
-import com.myInterface.ResultSetMetaData;
-import com.myInterface.Statement;
-import com.shy2850.filter.ApplicationContext;
+import com.wll7821.filter.ApplicationContext;
 
 /**</pre>
  * 通过模块化的拼接字符串
@@ -58,7 +58,7 @@ public class Model{
 		this.Table = Util.upperFirst(table);
 		this.url = url;
 		this.pk = pk;
-		Connection con = ConnectionPool.connectionPoolImpl.getConnection();
+		Connection con = new ConnectionProvider().getConnection();
 		try {
             Statement stmt = con.createStatement();				
 			ResultSet rs = stmt.executeQuery("select * from "+table);
@@ -122,7 +122,7 @@ public class Model{
 		return sb.toString();
 	}
 	/**重写的toString方法*/
-	private String ToString() {  //添加toString()方法
+	String ToString() {  //添加toString()方法
 		StringBuffer sb = new StringBuffer("\n\t@Override\n\tpublic String toString(){\n");
 		sb.append("\t\treturn \""+Util.upperFirst(table)+" [");
 		for (int i = 0; i < members.size(); i++) {
@@ -151,7 +151,7 @@ public class Model{
 		return sb.toString();
 	}
 	/**创建成员列表方法*/
-	private String MemberList(){
+	String MemberList(){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tpublic static final String[] memberList = {");
 		for (int i = 0; i < members.size(); i++) {
@@ -167,7 +167,7 @@ public class Model{
 	
 	
 	/**创建按序号获得属性值的方法*/
-	private String Get(){
+	String Get(){
 		StringBuffer sb = new StringBuffer();
 		sb.append("\n\tpublic Object get(int i){");
 		sb.append("\n\t\tObject[] members = {");
@@ -186,7 +186,7 @@ public class Model{
 		StringBuffer allInfo = new StringBuffer("package "+url+";\n");
 		if(hasDate)allInfo.append(Util.IMPORT_DATE+"\n");
 		if(hasBlob)allInfo.append(Util.IMPORT_BLOB+"\n");
-		allInfo.append("\nimport java.io.Serializable;\nimport com.myInterface.ResultSet;\nimport java.sql.SQLException;\n");
+		allInfo.append("\nimport java.io.Serializable;\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\n");
 		allInfo.append("\nimport com.createJavaFile.createModel.ParseResultSetable;\n\n");
 		allInfo.append("public class "+Util.upperFirst(table)+" implements ParseResultSetable,Serializable{\n\t");
 		allInfo.append("\n\tprivate static final long serialVersionUID = 1L;\n\t");
@@ -199,12 +199,12 @@ public class Model{
 				allInfo.append(Equals(members.get(i)));
 			}
 		}
-		allInfo.append(ToString());
+//		allInfo.append(ToString());
 		allInfo.append(ParseOf());
-		allInfo.append(MemberList());
-		allInfo.append(Get());
-		allInfo.append("\n\tpublic final int primaryKey = "+pkIndex+";");
-		allInfo.append("\n\tpublic int PrimaryKey(){return primaryKey;}");
+//		allInfo.append(MemberList());
+//		allInfo.append(Get());
+//		allInfo.append("\n\tpublic final int primaryKey = "+pkIndex+";");
+//		allInfo.append("\n\tpublic int PrimaryKey(){return primaryKey;}");
 		allInfo.append("\n}");
 		return allInfo.toString();
 	}

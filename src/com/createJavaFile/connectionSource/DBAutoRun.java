@@ -12,7 +12,6 @@ import com.createJavaFile.createModel.Model;
 import com.createJavaFile.createModel.ModelDao;
 import com.createJavaFile.myutil.PropertyReader;
 import com.createJavaFile.myutil.Util;
-import com.shy2850.filter.ApplicationContext;
 
 /**
  * 设置自动完成当前数据库中的所有表项自动生成映射java类。
@@ -36,7 +35,7 @@ public class DBAutoRun {
 	public static final SQLDialog SYBASE = new SQLDialog("SYBASE","com.sybase.jdbc3.jdbc.SybDriver","jdbc:sybase:Tds:<hostName>:<port>/<databaseName>",2638);
 	
 	
-	private Connection conn = new ConnectionProvider().getSQLConnection();
+	private Connection conn = new ConnectionProvider().getConnection();
 	/**实体类文件保存地址*/
 	private String poURL = "com.bean.po";
 	/**DAO类文件保存地址*/
@@ -152,18 +151,7 @@ public class DBAutoRun {
 						"conf/ApplicationBeans.properties");
 				PropertyReader.addProperties(Util.FORWARD_CONF,
 						"conf/ApplicationForwards.properties");
-				PropertyReader
-						.addProperties(Util.CONNECTION_POOL,
-								"com.createJavaFile.connectionSource.ConnectionPoolImpl");
-				PropertyReader
-						.addProperties(ConnectionPool.CONNECTION_PROVIDER,
-								"com.createJavaFile.connectionSource.ConnectionProvider");
-				PropertyReader.addProperties(
-						ApplicationContext.ANNOTATION_INJECT, "false");
-				PropertyReader.addProperties(
-						ApplicationContext.SET_METHOD_INJECT, "true");
 				PropertyReader.addProperties(Util.DIVID_CONFIG, "$");
-				PropertyReader.addProperties(Util.PERSIST_CONF, "conf/PersistObj.properties");
 				new File(Util.contextPath+"conf/ApplicationForwards.properties").createNewFile();
 				System.out.println("配置文件已经生成");
 			}

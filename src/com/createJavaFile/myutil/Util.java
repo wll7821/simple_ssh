@@ -15,7 +15,7 @@ import java.sql.Statement;
 public class Util {
 	
 	/**导包字符串*/
-	public static final String IMPORT_DATE = "import java.util.Date;\nimport com.shy2850.filter.DateFormat;";
+	public static final String IMPORT_DATE = "import java.util.Date;";
 	/**导包字符串*/
 	public static final String IMPORT_BLOB = "import java.sql.Blob;";
 	/**主配置文件名*/
